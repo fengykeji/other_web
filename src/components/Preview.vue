@@ -35,7 +35,6 @@ export default {
   created() {
     var self = this;
     let id = this.$route.query.id;
-    // console.log(this.$route.query)
     this.$http
       .get("http://120.27.21.136:2798/user/houseType/detail?id=" + id)
       .then(function(response) {

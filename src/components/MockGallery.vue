@@ -65,7 +65,6 @@ export default {
       this.swiper.slideTo(item.start, 1000);
       // this.name = item.name
       // this.tmplength = item.length
-      // console.log(this.$refs.mySwiper)
       // this.tagName = ta
       // this.idx = 1
       // this.activeIndex = index;
@@ -79,7 +78,6 @@ export default {
           this.$route.query.id
       )
       .then(res => {
-        // console.log(res)
         var self = this;
         this.tags = res.data.data.map(ele => {
           return ele.name;

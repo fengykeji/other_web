@@ -8,8 +8,8 @@
             <img src="../assets/log.gif" alt="" />
           </div>
           <div class="head_text">
-            <h4>找新房&nbsp;上云算</h4>
-            <p>渠道&nbsp;分销&nbsp;专业房产平台</p>
+            <h4>云算渠道</h4>
+            <p>房产渠道专业平台</p>
           </div>
           <!-- <a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a> -->
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
@@ -85,15 +85,17 @@
         </div>
         <a href="javascript:;" class="house_local timer_content">
           <font class="local_info" :name="project_base_info.latitude" :id="project_base_info.longitude"></font>
-          <font id="base_loacl" class="rightside">{{project_base_info.absolute_address}}</font>
+          <font id="base_loacl" class="rightside" @click='navigation'>{{project_base_info.absolute_address}}</font>
+          <div class="see_info">
+            <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
+          </div>
         </a>
+
       </div>
-      <div class="bulding_info space">
-        <div class="head_mod">
-          <h3>楼盘信息</h3>
-          <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
-        </div>
-        <div class="info_detail">
+
+      <!-- <div class="bulding_info space"> -->
+
+      <!-- <div class="info_detail">
           <div class="info_content">
             <font>开发商：</font>
             <font>{{project_base_info.developer_name}}</font>
@@ -106,13 +108,14 @@
             <font>交房时间：</font>
             <font>{{build_info.handing_room_time}}</font>
           </div>
-          <!-- <div class="info_content"> -->
-          <!-- <font>产权：</font> -->
-          <!-- <font>70年</font> -->
-          <!-- <font>70年</font> -->
-          <!-- </div> -->
-        </div>
-      </div>
+          <div class="info_content">
+          <font>产权：</font>
+          <font>70年</font>
+          <font>70年</font>
+          </div>
+        </div> -->
+      <!-- </div> -->
+
       <div class="project_news space">
         <div class="head_mod">
           <h3>
@@ -254,13 +257,25 @@ export default {
     hided() {
       this.show = false;
     },
+    navigation() {},
     location() {
       var latitude = this.project_base_info.latitude;
       var longitude = this.project_base_info.longitude;
       this.map = new BMap.Map("allmap");
+      this.map.addControl(new BMap.NavigationControl());
+      this.map.enableScrollWheelZoom(true);
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
         renderOptions: { map: this.map, autoViewport: true }
+      });
+      var myGeo = new BMap.Geocoder();
+      myGeo.getLocation(new BMap.Point(longitude, latitude), result => {
+        if (result) {
+          this.project_base_info.absolute_address = result.address;
+          this.map.addOverlay(
+            new BMap.Marker(new BMap.Point(longitude, latitude))
+          );
+        }
       });
     },
     shoplocal: function(e) {
@@ -296,11 +311,10 @@ export default {
     // }
   },
   created() {
-    var _this = this;
+    let _this = this;
     _this.project_id = _this.$route.query.id;
-    console.log(_this);
     // this.project_id = this.GetQueryString("project_id");
-    // this.project_id = this.project_id === null ? 1 : this.project_id;
+    this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
       "http://120.27.21.136:2798/user/project/detail?project_id=" +
       this.project_id +
@@ -311,7 +325,6 @@ export default {
       type: "get",
       dataType: "json",
       success: function(res) {
-        console.log(res);
         _this.build_info = res.data.build_info;
         _this.data = res.data;
         _this.dynamic = res.data.dynamic;
@@ -434,18 +447,21 @@ function slider() {
 </script>
 
 <style scoped>
-
 @import "../assets/resetByHuang.css";
 
-
-.abstract{
-  font-size: 12px;
+.abstract {
+  font-size: 13px;
   margin-top: 0.1rem;
-  color: #999
+  color: #666;
 }
-
-
-
+.see_info {
+  text-align: right;
+  font-size: 0.6rem;
+  font-size: 14px;
+}
+.see_info a {
+  color: #999;
+}
 .sign {
   position: absolute;
   right: 0.3rem;
@@ -457,7 +473,7 @@ function slider() {
   background-color: #fff !important;
   font-size: 14px;
   text-align: center;
-  line-height: 0.9rem
+  line-height: 0.9rem;
 }
 .space {
   padding: 0 0.3rem;
@@ -653,7 +669,7 @@ div#scroll {
 }
 .house_detail .house_title {
   color: #666;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
 }
 .fix {
@@ -887,7 +903,7 @@ div.head_mod {
   font-size: 16px;
 }
 /* #detail .project_news h3 font:nth-child(2) { */
-  /* margin-left: 1rem; */
+/* margin-left: 1rem; */
 /* } */
 #detail .project_notes {
   /* float: left; */
@@ -903,7 +919,8 @@ div.head_mod {
   /* float: left; */
   font-size: 14px;
   width: 100%;
-  margin-bottom: 0.5rem;
+  color: #333;
+  margin-bottom: 0.2rem;
 }
 #detail .project_notes p {
   /* float: left; */
@@ -1122,6 +1139,8 @@ div.head_mod {
   text-align: center;
   padding: 0 0.15rem;
   margin-right: 0.2rem;
+  background-color: #23619b;
+  color: #fff;
   /* margin: 0 0.15rem; */
 }
 .anothercolorful:nth-child(1) {
@@ -1201,7 +1220,7 @@ div.around {
 a#call {
   height: 1.2rem;
 }
-.swiperbox{
+.swiperbox {
   position: relative;
   width: 100%;
   height: 5.5rem;

@@ -190,7 +190,6 @@ export default {
             document.documentElement.clientWidth /
             10.8 +
           "px";
-        console.log(res);
       });
   }
 };

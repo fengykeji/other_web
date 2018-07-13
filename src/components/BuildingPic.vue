@@ -50,8 +50,6 @@ export default {
           this.$route.params.projectId
       )
       .then(res => {
-        console.log("daaaaaaaaaaaaaaaaaaa");
-        console.log(res);
         this.items = res.data.data;
       });
   },
