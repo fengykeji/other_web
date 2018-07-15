@@ -148,6 +148,7 @@
               <div v-for="(house,index) in house_type " class="house_type_content" :key="index" @click="getMoreDetails(house)">
                 <img v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
                 <div>
+                  <!-- <p class="house_named">{{house.house_type_name}}</p> -->
                   <p class="house_named">{{house.house_type_name}}</p>
                   <font>{{house.property_area_min}}㎡</font>
                 </div>
@@ -281,8 +282,8 @@ export default {
     shoplocal: function(e) {
       var m = e.currentTarget;
       var option = m.querySelector("font").innerHTML;
-      var info = $("#base_loacl").html();
-      this.local.searchNearby(option, info, 15);
+      var mPoint = new BMap.Point(this.project_base_info.longitude , this.project_base_info.latitude);  
+      this.local.searchNearby(option, mPoint, 2000);
     },
     ajusctTextContent: function cuttext(eleclassname, count, words) {
       var p_boxs = document.querySelectorAll(eleclassname, count);
@@ -354,7 +355,7 @@ export default {
   mounted() {},
   updated() {
     // slider();
-    this.ajusctTextContent(".house_named", 4, "");
+    // this.ajusctTextContent(".house_named", 4, "");
     // this.ajusctTextContent("#dy_content", 20, "");
     this.location();
   }
@@ -449,6 +450,7 @@ function slider() {
 <style scoped>
 @import "../assets/resetByHuang.css";
 
+
 .abstract {
   font-size: 13px;
   margin-top: 0.1rem;
@@ -466,14 +468,14 @@ function slider() {
   position: absolute;
   right: 0.3rem;
   bottom: 0.3rem;
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
   z-index: 9999;
-  background-color: #fff !important;
+  background-color: rgba(255,255,255,.5) !important;
   font-size: 14px;
   text-align: center;
-  line-height: 0.9rem;
+  line-height: 1.2rem;
 }
 .space {
   padding: 0 0.3rem;
@@ -989,6 +991,7 @@ div.head_mod {
 #detail .project_img .house_type_content div p {
   float: left;
   width: 4.6rem;
+  overflow: hidden;
   /* font-size: 0.65rem; */
   font-size: 12px;
   text-align: left;
@@ -1137,14 +1140,15 @@ div.head_mod {
   /* height: 0.6rem; */
   line-height: 0.7rem;
   text-align: center;
-  padding: 0 0.15rem;
+  padding: 0 0.2rem;
   margin-right: 0.2rem;
-  background-color: #23619b;
-  color: #fff;
+  background-color: #fff;
+  color: #999;
   /* margin: 0 0.15rem; */
 }
 .anothercolorful:nth-child(1) {
   background: #d5f2ff;
+
 }
 .anothertxt1 {
   color: #40a9ff !important;
@@ -1175,21 +1179,25 @@ div.head_mod {
 }
 
 .colorful :nth-child(1) {
-  color: #d5f2ff;
-  background: #1ea0e9;
-  /* background: #d5f2ff; */
+  color: rgb(67,171,255);
+  background: rgb(213,243,255);
+  
 }
 .colorful :nth-child(2) {
-  color: #6cbba6;
-  background: #eaf2ed;
+  color: rgb(137,199,182);
+  background: rgb(235,243,237);
 }
 .colorful :nth-child(3) {
-  color: #37bdc7;
-  background: #d0f3f5;
+   color: rgb(43,187,197);
+  background: rgb(209,243,245);
 }
 .colorful :nth-child(4) {
-  color: #d5f2ff;
-  background: #40a9ff;
+   color: rgb(255,190,90);
+  background: rgb(255,237,211);
+}
+.colorful :nth-child(5) {
+   color: rgb(139,188,255);
+  background: rgb(229,241,255);
 }
 .bder {
   position: relative;

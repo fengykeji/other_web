@@ -47,12 +47,16 @@
                 </item>
                 <item>
                     <p>价格区间</p>
-                    <p slot="content">{{info.min_price}}万-{{info.max_price}}万</p>
+                    <p slot="content">
+                        <span v-if="info.min_price">{{info.min_price}}万-{{info.max_price}}万</span>
+                        <span v-else>暂无数据</span>
+                    </p>
                 </item>
                 <item>
                     <p>占地面积</p>
-                    <p slot="content">{{info.covered_area?info.covered_area:'暂无数据'}}m
-                        <sup>2</sup>
+                    <p slot="content">
+                        <span  v-if="info.covered_area">{{info.covered_area}}m<sup>2</sup></span>
+                        <span  v-else>暂无数据</span>
                     </p>
                 </item>
                 <item>
@@ -61,8 +65,9 @@
                 </item>
                 <item>
                     <p>建筑面积</p>
-                    <p slot="content">{{info.floor_space?info.floor_space:'暂无数据'}}m
-                        <sup>2</sup>
+                    <p slot="content">
+                        <span  v-if="info.floor_space">{{info.floor_space}}m<sup>2</sup></span>
+                        <span  v-else>暂无数据</span>
                     </p>
                 </item>
                 <item>
