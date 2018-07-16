@@ -347,6 +347,11 @@ export default {
         _this.project_base_info = res.data.project_basic_info;
         _this.project_img = res.data.project_img.url;
         _this.total = _this.project_img.length;
+        if (_this.total > 0) {
+          _this.idx = 1;
+        } else {
+          _this.idx = 0;
+        }
         _this.cancle = res.data.project_basic_info.property_type;
         _this.butter_tel = res.data.butter_tel;
         _this.loadding = true;
