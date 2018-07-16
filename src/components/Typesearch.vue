@@ -1,17 +1,13 @@
 <template>
   <div id="typesearchWrapper">
     <p class="title">本楼盘其他户型</p>
-    <div id="scroll">
-      <ul id="wrapper" :style="{width:dynamicWidth}">
-        <li v-for="(item,index) in items" :key="index" class="list" @click="check(item)">
-          <div id="image" :style="{backgroundImage: 'url(' + 'http://120.27.21.136:2798/'+item.img_url +')'}"></div>
+    <!-- <div id="scroll">
+      <ul id="wrapper">
+        <li >
+          <img class='otherImg' v-bind:src="'http://120.27.21.136:2798/'+item.img_url" />
           <div id="info">
             <p id="type">
               <span class="typeL">{{item.house_type_name}}</span>
-              <!-- <span class="typeR">{{item.property_area_min}}m
-                <sup>2</sup>-{{item.property_area_max}}m
-                <sup>2</sup>
-              </span> -->
               <span class="typeR">{{item.property_area_min}}㎡-{{item.property_area_max}}㎡
               </span>
             </p>
@@ -20,7 +16,25 @@
           </div>
         </li>
       </ul>
+    </div> -->
+
+    <div id="scroll">
+      <div class="house_type imgwrapper">
+        <div v-for="(item,index) in items" :key="index" class="list" @click="check(item)">
+          <img class='otherImg' v-bind:src="'http://120.27.21.136:2798/'+item.img_url" v-if='item.img_url' />
+          <img class='otherImg' v-else src="../assets/default_3@2x.jpg" />
+          <div>
+            <span class="house_named">{{item.house_type_name}}</span>
+            <span class="house_named">{{item.property_area_min}}㎡</span>
+          </div>
+          <div class="house_named">{{item.house_type}}</div>
+          <div>
+            <font style="color:#1B98FF" class="house_named">{{item.sale_state}}</font>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -31,49 +45,35 @@ export default {
   data: function() {
     return {
       items: [],
-      dynamicWidth: ""
+      dynamicWidth: "",
+      house_type: [],
+      id: ""
     };
   },
+  mounted() {
+    this.id = this.$route.query.id;
+    this.house_type = this.$route.params.house_type;
+    this.showOtherHouse();
+  },
   methods: {
+    showOtherHouse() {
+      this.items = this.house_type;
+      let temp = this.items;
+      let arr = [];
+      console.log(temp);
+      for (let item of this.items) {
+        if (item.id == this.id) {
+        } else {
+          arr.push(item);
+        }
+      }
+      this.items = arr;
+    },
     check(item) {
-      // console.log(item);
-      this.$router.push({name:'estatedetail',query:{id:item.id}})
+      this.$router.push({ name: "estatedetail", query: { id: item.id } });
     }
   },
-  created() {
-    var self = this;
-    var id = this.$route.query.id;
-    this.$http
-      .get("http://120.27.21.136:2798/user/houseType/list?project_id=" + id)
-      .then(function(response) {
-        // console.log(response);
-        self.items = response.data.data;
-        // console.log(self.items);
-        self.dynamicWidth =
-          (self.items.length * 5.353 + 0.3) *
-            document.documentElement.clientWidth /
-            10.8 +
-          "px";
-      });
-  },
-  watch: {
-    $route(to, from) {
-      var self = this;
-      var id = this.$route.query.id;
-      this.$http
-        .get("http://120.27.21.136:2798/user/houseType/list?project_id=" + id)
-        .then(function(response) {
-          // console.log(response);
-          self.items = response.data.data;
-          // console.log(self.items);
-          self.dynamicWidth =
-            (self.items.length * 5.353 + 0.3) *
-              document.documentElement.clientWidth /
-              10.8 +
-            "px";
-        });
-    }
-  }
+  created() {}
 };
 </script>
 
@@ -86,7 +86,30 @@ div#scroll {
   overflow-x: auto;
   height: 300px;
 }
-p.title {
+.house_type_content div p {
+  float: left;
+  width: 4.6rem;
+  overflow: hidden;
+  font-size: 12px;
+  text-align: left;
+  line-height: 1rem;
+}
+.house_type {
+  margin: 0 0.2rem;
+  /* float: left; */
+  /* width: 100%; */
+}
+.house_named {
+  font-size: 0.26rem;
+}
+.imgwrapper {
+  display: -webkit-box;
+}
+.otherImg {
+  width: 3rem;
+  height: 3rem;
+}
+.title {
   font-size: 0.46rem;
   font-family: SourceHanSansCN-Regular;
   font-size: 0.46rem;
@@ -106,11 +129,10 @@ p.title {
   /* width: 1120px; */
 }
 
-li.list {
-  width: 5.153rem;
-  height: 5.153rem;
-  margin-right: 0.1rem;
-  float: left;
+.list {
+  text-align: center;
+  margin-right: 0.5rem;
+  font-size: 0.46rem;
 }
 div#image {
   width: 100%;
@@ -126,11 +148,11 @@ span.typeL {
   letter-spacing: 0px;
   color: #565656;
 }
-p#type {
+#type {
   font-size: 0.36rem;
   /* position: relative; */
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 span.typeR {
   /* position: absolute; */
@@ -143,13 +165,13 @@ span.typeR {
   letter-spacing: 0px;
   color: #565656;
 }
-p.type {
+.type {
   margin-top: 0.38rem;
   font-size: 0.36px;
   color: #565656;
   margin-bottom: 0.36rem;
 }
-p#isOnSale {
+#isOnSale {
   font-family: SourceHanSansCN-Regular;
   font-size: 0.36rem;
   font-weight: normal;

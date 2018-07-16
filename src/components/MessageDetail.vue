@@ -1,7 +1,7 @@
 <template>
     <div id="messageDetail">
         <div class="nav">
-            <div class="back" @click="getBack"><</div>
+            <div class="back" @click="getBack"></div>
             <div class="navtitle">动态详情</div>
         </div>
             <div class="contentBox">

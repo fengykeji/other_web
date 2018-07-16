@@ -332,8 +332,9 @@ div#scroll {
 .mclose {
   position: absolute;
   top: 0;
-  right: 0.5rem;
+  right: 0.3rem;
   font-weight: normal;
+  font-size: 17px;
 }
 .minfo {
   font-size: 14px;

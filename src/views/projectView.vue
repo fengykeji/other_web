@@ -26,7 +26,11 @@
       <div class="swiperbox">
         <div class="swiper-container" @click="goMockGallery">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" :style="{backgroundImage:'url(' + 'http://120.27.21.136:2798/' + img.img_url + ')'}"></div>
+            <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url">
+              <img v-bind:src="'http://120.27.21.136:2798/'+img.img_url" />
+            </div>
+            <!-- <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url" :style="{backgroundImage:'url(' + 'http://120.27.21.136:2798/' + img.img_url + ')'}"></div> -->
+            <img class="swiper-slide" v-else src="../assets/banner_default_2@2x.jpg" />
           </div>
         </div>
         <div class="sign">{{idx}}/{{total}}</div>
@@ -137,7 +141,8 @@
       </div>
       <div class="project_img">
         <h3 class="space">楼栋信息</h3>
-        <img v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
+        <img v-if='project_base_info.total_float_url' v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
+        <img v-else src="../assets/banner_default_2@2x.jpg" />
         <div class="house_info">
           <div class="head_mod">
             <h3 class="space">户型信息</h3>
@@ -146,7 +151,8 @@
           <div id="scroll">
             <div class="house_type imgwrapper">
               <div v-for="(house,index) in house_type " class="house_type_content" :key="index" @click="getMoreDetails(house)">
-                <img v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
+                <img v-if='house.img_url' v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
+                <img v-else src="../assets/default_3@2x.jpg" />
                 <div>
                   <!-- <p class="house_named">{{house.house_type_name}}</p> -->
                   <p class="house_named">{{house.house_type_name}}</p>
@@ -249,7 +255,11 @@ export default {
     },
     getMoreDetails(house) {
       let id = house.id;
-      this.$router.push({ name: "estatedetail", query: { id } });
+      this.$router.push({
+        name: "estatedetail",
+        query: { id },
+        params: { house_type: this.house_type }
+      });
     },
     checkPropertyDetail() {
       let id = this.project_base_info.project_id;
@@ -282,7 +292,10 @@ export default {
     shoplocal: function(e) {
       var m = e.currentTarget;
       var option = m.querySelector("font").innerHTML;
-      var mPoint = new BMap.Point(this.project_base_info.longitude , this.project_base_info.latitude);  
+      var mPoint = new BMap.Point(
+        this.project_base_info.longitude,
+        this.project_base_info.latitude
+      );
       this.local.searchNearby(option, mPoint, 2000);
     },
     ajusctTextContent: function cuttext(eleclassname, count, words) {
@@ -345,7 +358,11 @@ export default {
             autoplay: false
           });
           swiper.on("slideChange", function() {
-            _this.idx = swiper.activeIndex + 1;
+            if (_this.project_img.length > 0) {
+              _this.idx = swiper.activeIndex + 1;
+            } else {
+              _this.idx = 0;
+            }
           });
         });
         // _this.$nextTick(_this.location)
@@ -450,7 +467,6 @@ function slider() {
 <style scoped>
 @import "../assets/resetByHuang.css";
 
-
 .abstract {
   font-size: 13px;
   margin-top: 0.1rem;
@@ -472,7 +488,7 @@ function slider() {
   height: 1.2rem;
   border-radius: 50%;
   z-index: 9999;
-  background-color: rgba(255,255,255,.5) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
   font-size: 14px;
   text-align: center;
   line-height: 1.2rem;
@@ -1003,7 +1019,7 @@ div.head_mod {
 }
 #detail .project_img .house_type_content div > font {
   text-align: right;
-  width: 3rem;
+  width: 4rem;
   /* font-size: 0.65rem; */
   font-size: 12px;
   text-align: left;
@@ -1148,7 +1164,6 @@ div.head_mod {
 }
 .anothercolorful:nth-child(1) {
   background: #d5f2ff;
-
 }
 .anothertxt1 {
   color: #40a9ff !important;
@@ -1179,25 +1194,24 @@ div.head_mod {
 }
 
 .colorful :nth-child(1) {
-  color: rgb(67,171,255);
-  background: rgb(213,243,255);
-  
+  color: rgb(67, 171, 255);
+  background: rgb(213, 243, 255);
 }
 .colorful :nth-child(2) {
-  color: rgb(137,199,182);
-  background: rgb(235,243,237);
+  color: rgb(137, 199, 182);
+  background: rgb(235, 243, 237);
 }
 .colorful :nth-child(3) {
-   color: rgb(43,187,197);
-  background: rgb(209,243,245);
+  color: rgb(43, 187, 197);
+  background: rgb(209, 243, 245);
 }
 .colorful :nth-child(4) {
-   color: rgb(255,190,90);
-  background: rgb(255,237,211);
+  color: rgb(255, 190, 90);
+  background: rgb(255, 237, 211);
 }
 .colorful :nth-child(5) {
-   color: rgb(139,188,255);
-  background: rgb(229,241,255);
+  color: rgb(139, 188, 255);
+  background: rgb(229, 241, 255);
 }
 .bder {
   position: relative;

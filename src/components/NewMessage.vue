@@ -7,7 +7,7 @@
     <div class="position-box">
       <vue-better-scroll class="wrapper" ref="scroll" :scrollbar="scrollbarObj" :pullDownRefresh="pullDownRefreshObj" :pullUpLoad="pullUpLoadObj" :startY="parseInt(startY)" @pullingDown="onPullingDown" @pullingUp="onPullingUp">
         <ul ref="list" class="list-content">
-          <li class="list-item" v-for="(item,index) in items" :key="index" >
+          <li class="list-item" v-for="(item,index) in items" :key="index">
             <div class="title">{{item.title}}</div>
             <div class="time">{{item.create_time}}</div>
             <div class="content">{{item.content}}</div>
@@ -17,10 +17,10 @@
               </ul>
             </div>
             <div class="awrapper">
-            <a :href="'http://120.27.21.136:2798/' + item.url" class="readall">阅读全文&nbsp;>></a>
+              <a :href="'http://120.27.21.136:2798/' + item.url" class="readall">阅读全文 >></a>
             </div>
             <!-- <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div> -->
-            <div class="split" ></div>
+            <div class="split"></div>
             <!-- <div class="mockblank"></div> -->
           </li>
         </ul>
@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      name:'',
+      name: "",
       // 这个配置可以开启滚动条，默认为 false。当设置为 true 或者是一个 Object 的时候，都会开启滚动条，默认是会 fade 的
       scrollbarObj: {
         fade: true
@@ -77,13 +77,17 @@ export default {
     next();
   },
   methods: {
-    backToProjectView(){
-      let project_id = this.$route.query.project_id
-      this.$router.push({name:'projectView',query:{id:project_id}})
+    backToProjectView() {
+      let project_id = this.$route.query.project_id;
+      this.$router.push({ name: "projectView", query: { id: project_id } });
     },
-    checkAllInfo(index){
-      let project_id = this.$route.query.project_id
-      this.$router.push({name:'messageDetail',params:{id:index},query:{fromProject:project_id}})
+    checkAllInfo(index) {
+      let project_id = this.$route.query.project_id;
+      this.$router.push({
+        name: "messageDetail",
+        params: { id: index },
+        query: { fromProject: project_id }
+      });
       // console.log(index)
     },
     // loadData() {
@@ -128,11 +132,13 @@ export default {
       // });
       let result = this.$http
         .get(
-          "http://120.27.21.136:2798/user/dynamic/list?project_id=" + this.$route.query.project_id + "&page=" +
+          "http://120.27.21.136:2798/user/dynamic/list?project_id=" +
+            this.$route.query.project_id +
+            "&page=" +
             this.currentPage
         )
         .then(res => {
-          console.log(res.data)
+          console.log(res.data);
           return res.data;
         });
       // console.log(res)
@@ -142,7 +148,7 @@ export default {
       // 模拟下拉刷新
       this.currentPage = 1;
       this.getData().then(res => {
-        console.log(res)
+        console.log(res);
         this.lastPage = res.data.last_page;
         this.items = res.data.data;
         this.$refs.scroll.forceUpdate(true);
@@ -175,7 +181,7 @@ export default {
     }
   },
   created() {
-    this.name = this.$route.query.pname
+    this.name = this.$route.query.pname;
     // this.$http.get('http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1').then(function(res){
     //   console.log(res)
     //   this.items = res.data
@@ -204,18 +210,19 @@ body {
 /* .list-item{
   margin-bottom: 10px;
 } */
-.awrapper{
+.awrapper {
   text-align: right;
 }
-.readall{
-  color: #000000
+.readall {
+  color: #000000;
+  font-size: 0.8rem;
 }
 .nav {
   position: fixed;
   left: 0;
   right: 0;
   height: 40px;
-  border-bottom: 0.1px solid #eee
+  border-bottom: 0.1px solid #eee;
   /* background: red; */
 }
 .position-box {
@@ -242,20 +249,15 @@ body {
   background-color: #ffffff;
 }
 .title {
-  /* height: 1.5rem;
-  line-height: 1.5rem; */
-  height: 50px;
-  line-height: 50px;
-  font-size: 16px;
+  padding-top: 10px;
+  font-size: 14px;
   font-weight: bold;
-
 }
 .time {
   font-size: 12px;
   color: #737373;
   /* margin-bottom: 0.5rem; */
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin: 5px 0;
 }
 .content {
   font-size: 14px;
@@ -279,37 +281,36 @@ body {
 }
 /* div.before-trigger canvas {
   /* width: 0.5rem !important; */
-  /* height: 0.8rem; 
+/* height: 0.8rem; 
   display: none !important;
 } */
-.nav{
+.nav {
   /* display: flex; */
   text-align: center;
   background: #ffffff;
   z-index: 999;
 }
-.back{
+.back {
   position: absolute;
   width: 20px;
   height: 20px;
   left: 0;
   top: 50%;
-  background-image: url('../assets/back.png');
+  background-image: url("../assets/back.png");
   background-size: cover;
-  transform: translate(0,-50%)
-  
+  transform: translate(0, -50%);
+
   /* text-align: left; */
   /* top: 0; */
   /* left: 8px; */
   /* padding-left: 8px; */
   /* line-height: 40px; */
 }
-.navtitle{
+.navtitle {
   text-align: center;
   line-height: 40px;
-
 }
-.mockblank{
+.mockblank {
   width: 100%;
   height: 1rem;
 }
