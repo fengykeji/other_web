@@ -89,7 +89,7 @@
         </div>
         <a href="javascript:;" class="house_local timer_content">
           <font class="local_info" :name="project_base_info.latitude" :id="project_base_info.longitude"></font>
-          <font id="base_loacl" class="rightside" @click='navigation'>{{project_base_info.absolute_address}}</font>
+          <font id="base_loacl" class="rightside">{{project_base_info.absolute_address}}</font>
           <div class="see_info">
             <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
           </div>
@@ -268,7 +268,6 @@ export default {
     hided() {
       this.show = false;
     },
-    navigation() {},
     location() {
       var latitude = this.project_base_info.latitude;
       var longitude = this.project_base_info.longitude;
@@ -283,9 +282,13 @@ export default {
       myGeo.getLocation(new BMap.Point(longitude, latitude), result => {
         if (result) {
           this.project_base_info.absolute_address = result.address;
-          this.map.addOverlay(
-            new BMap.Marker(new BMap.Point(longitude, latitude))
-          );
+          var pt = new BMap.Point(longitude, latitude);
+          var myIcon = new BMap.Icon("coordinates@2x.png", new BMap.Size(300, 157));
+          var marker2 = new BMap.Marker(pt, { icon: myIcon }); // 创建标注
+          this.map.addOverlay(marker2); // 将标注添加到地图中
+          // this.map.addOverlay(
+          //   new BMap.Marker(new BMap.Point(longitude, latitude))
+          // );
         }
       });
     },
