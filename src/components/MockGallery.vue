@@ -3,6 +3,7 @@
     <div class="layout">
       <div class="nav">
         <span class="back" @click="getBack">
+          <img src="../assets/close.png" />
         </span>
         <span class="title">动态相册</span>
       </div>
@@ -12,7 +13,7 @@
         </div>
       </div>
       <div class="tags">
-        <div class="idx">{{name}}{{startIndex}}/{{tmplength}}</div>
+        <div class="idx">{{name}} {{startIndex}}/{{tmplength}}</div>
         <div class="aidx">全部{{aidx}}/{{total}}</div>
         <ul class="flx">
           <li v-for="(item,index) in items" :key="index" class="tag" @click="changeIndex(item,index)" :class="{active: item.start < idx && idx <=item.end}">{{item.name}}</li>
@@ -45,11 +46,7 @@ export default {
   },
   computed: {
     aidx: function() {
-      let tmp = 0;
-      for (let i = 0; i < this.activeIndex; i++) {
-        tmp += this.listImg.length;
-      }
-      return tmp + this.idx;
+      return this.idx;
     }
   },
   //   computed:{
@@ -78,13 +75,20 @@ export default {
           this.$route.query.id
       )
       .then(res => {
+
+        if(res.data.code != 200 ) {
+          return;
+        }
+
         var self = this;
         this.tags = res.data.data.map(ele => {
           return ele.name;
         });
         this.tagName = this.tags[0];
-        this.listImgs = res.data.data;
-        this.listImgs.forEach(function(ele, index) {
+        let tempImgList = res.data.data;
+        console.log(tempImgList)
+        tempImgList.forEach(function(ele, index) {
+          console.log(ele)
           ele.data.forEach(function(element, idx) {
             self.listImg.push(element.img_url);
           });
@@ -117,21 +121,20 @@ export default {
       });
   },
   mounted() {
-    var self = this;
     this.swiper = new Swiper(".swiper-container", {
       observeParents: true,
       observer: true,
       speed: 300,
       autoplay: false
     });
-    this.swiper.on("slideChange", function() {
-      self.idx = self.swiper.activeIndex + 1;
-      let res = self.items.filter(ele => {
-        return ele.start < self.idx && self.idx <= ele.end;
+    this.swiper.on("slideChange", ()=>{
+      this.idx = this.swiper.activeIndex + 1;
+      let res = this.items.filter(ele => {
+        return ele.start < this.idx && this.idx <= ele.end;
       });
-      self.name = res[0].name;
-      self.tmplength = res[0].length;
-      self.startIndex = self.idx - res[0].start;
+      this.name = res[0].name;
+      this.tmplength = res[0].length;
+      this.startIndex = this.idx - res[0].start;
     });
   }
 };
@@ -184,10 +187,18 @@ export default {
 }
 
 .back {
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  width: 1rem;
+  padding-left: 10px;
   color: aliceblue;
   font-size: 32px;
-  padding-left: 10px;
 }
+.back img {
+  width: 100%;
+}
+
 .title {
   position: absolute;
   left: 50%;

@@ -16,7 +16,7 @@
         mounted(){
             var swiper = new Swiper('.swiper-container',{
                 loop:true,
-                speed:2000,
+                // speed:2000,
                 // uniqueNavElements: false
                 // autoplay:true,
                 observer:true,
