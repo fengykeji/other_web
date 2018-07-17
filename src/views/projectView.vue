@@ -206,6 +206,7 @@
 </template>
 
 <script>
+let coordinates = require("./coordinates@2x.png");
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.css";
 // var mark = false;
@@ -277,13 +278,14 @@ export default {
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
         renderOptions: { map: this.map, autoViewport: true }
+        
       });
       var myGeo = new BMap.Geocoder();
       myGeo.getLocation(new BMap.Point(longitude, latitude), result => {
         if (result) {
           this.project_base_info.absolute_address = result.address;
           var pt = new BMap.Point(longitude, latitude);
-          var myIcon = new BMap.Icon("coordinates@2x.png", new BMap.Size(300, 157));
+          var myIcon = new BMap.Icon(coordinates, new BMap.Size(300, 157));
           var marker2 = new BMap.Marker(pt, { icon: myIcon }); // 创建标注
           this.map.addOverlay(marker2); // 将标注添加到地图中
           // this.map.addOverlay(
