@@ -1,9 +1,9 @@
 <template>
-    <div id="wrapper">
-        <banner :listImgC="result" id="banner"></banner>
-        <pagination :names="tags" :indexC="currentIndex" @indexUpdate="updateIndex"></pagination>
-        <detail :detailC="detail"></detail>
-    </div>
+  <div id="wrapper">
+    <banner :listImgC="result" id="banner"></banner>
+    <pagination :names="tags" :indexC="currentIndex" @indexUpdate="updateIndex"></pagination>
+    <detail :detailC="detail"></detail>
+  </div>
 </template>
 
 <script>
@@ -36,20 +36,15 @@ export default {
     var self = this;
     let id = this.$route.query.id;
     this.$http
-      .get("http://120.27.21.136:2798/user/houseType/detail?id=" + id)
+      .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
       .then(function(response) {
-        // console.log('!@#$%^&*&^%@#$%^&*((*&%^&*')
-        //   console.log(response.data.data.baseInfo)
         self.detail = response.data.data.baseInfo;
         let res = [];
         response.data.data.imgInfo.forEach(element => {
-          // self.tags.push(element.type_name)
           self.tags.push(element.type);
           res.push(element.list);
           self.listImg.push(element.list);
         });
-        // console.log('look!!!!!!!!!!!!!!!')
-        // console.log(self.listImg)
       });
   },
   watch: {
@@ -60,15 +55,13 @@ export default {
       var self = this;
       let id = this.$route.query.id;
       this.$http
-        .get("http://120.27.21.136:2798/user/houseType/detail?id=" + id)
+        .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
         .then(function(response) {
-          console.log('-----------------------------------')
-          console.log(response.data.data)
+          console.log("-----------------------------------");
+          console.log(response.data.data);
           self.detail = response.data.data.baseInfo;
-          // let res = [];
           response.data.data.imgInfo.forEach(element => {
             self.tags.push(element.type);
-            // res.push(element.list);
             self.listImg.push(element.list);
           });
         });

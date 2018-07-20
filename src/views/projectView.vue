@@ -18,7 +18,7 @@
       <!-- <div class="banner_images" @click="goMockGallery">
         <ul>
           <li v-for="(imgs,index) in project_img" :key="index">
-            <a href="javascript:;"><img v-bind:src="'http://120.27.21.136:2798/'+imgs.img_url" /></a>
+            <a href="javascript:;"><img v-bind:src="'http://120.78.69.178:2902/'+imgs.img_url" /></a>
           </li>
 
         </ul>
@@ -27,9 +27,9 @@
         <div class="swiper-container" @click="goMockGallery">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url">
-              <img v-bind:src="'http://120.27.21.136:2798/'+img.img_url" />
+              <img v-bind:src="'http://120.78.69.178:2902/'+img.img_url" />
             </div>
-            <!-- <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url" :style="{backgroundImage:'url(' + 'http://120.27.21.136:2798/' + img.img_url + ')'}"></div> -->
+            <!-- <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url" :style="{backgroundImage:'url(' + 'http://120.78.69.178:2902/' + img.img_url + ')'}"></div> -->
             <img class="swiper-slide" v-else src="../assets/banner_default_2@2x.jpg" />
           </div>
         </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="project_img">
         <h3 class="space">楼栋信息</h3>
-        <img v-if='project_base_info.total_float_url' v-bind:src="'http://120.27.21.136:2798/'+project_base_info.total_float_url" @click="checkBuildingPic" />
+        <img v-if='project_base_info.total_float_url' v-bind:src="'http://120.78.69.178:2902/'+project_base_info.total_float_url" @click="checkBuildingPic" />
         <img v-else src="../assets/banner_default_2@2x.jpg" />
         <div class="house_info">
           <div class="head_mod">
@@ -151,7 +151,7 @@
           <div id="scroll">
             <div class="house_type imgwrapper">
               <div v-for="(house,index) in house_type " class="house_type_content" :key="index" @click="getMoreDetails(house)">
-                <img v-if='house.img_url' v-bind:src="'http://120.27.21.136:2798/'+house.img_url" />
+                <img v-if='house.img_url' v-bind:src="'http://120.78.69.178:2902/'+house.img_url" />
                 <img v-else src="../assets/default_3@2x.jpg" />
                 <div>
                   <!-- <p class="house_named">{{house.house_type_name}}</p> -->
@@ -206,7 +206,7 @@
 </template>
 
 <script>
-let coordinates = require("./coordinates@2x.png");
+// let coordinates = require("./coordinates@2x.png");
 import Swiper from "swiper";
 import "swiper/dist/css/swiper.css";
 // var mark = false;
@@ -278,19 +278,18 @@ export default {
       this.map.centerAndZoom(new BMap.Point(longitude, latitude), 12);
       this.local = new BMap.LocalSearch(this.map, {
         renderOptions: { map: this.map, autoViewport: true }
-        
       });
       var myGeo = new BMap.Geocoder();
       myGeo.getLocation(new BMap.Point(longitude, latitude), result => {
         if (result) {
           this.project_base_info.absolute_address = result.address;
-          var pt = new BMap.Point(longitude, latitude);
-          var myIcon = new BMap.Icon(coordinates, new BMap.Size(300, 157));
-          var marker2 = new BMap.Marker(pt, { icon: myIcon }); // 创建标注
-          this.map.addOverlay(marker2); // 将标注添加到地图中
-          // this.map.addOverlay(
-          //   new BMap.Marker(new BMap.Point(longitude, latitude))
-          // );
+          // var pt = new BMap.Point(longitude, latitude);
+          // var myIcon = new BMap.Icon(coordinates, new BMap.Size(300, 157));
+          // var marker2 = new BMap.Marker(pt, { icon: myIcon }); // 创建标注
+          // this.map.addOverlay(marker2); // 将标注添加到地图中
+          this.map.addOverlay(
+            new BMap.Marker(new BMap.Point(longitude, latitude))
+          );
         }
       });
     },
@@ -335,7 +334,7 @@ export default {
     // this.project_id = this.GetQueryString("project_id");
     this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
-      "http://120.27.21.136:2798/user/project/detail?project_id=" +
+      "http://120.78.69.178:2902/user/project/detail?project_id=" +
       this.project_id +
       "&agent_id=0";
     $.ajax({

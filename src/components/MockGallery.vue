@@ -9,7 +9,7 @@
       </div>
       <div class="swiper-container">
         <div class="swiper-wrapper" ref="mySwiper">
-          <div class="swiper-slide" v-for="(img,index) in listImg" :key="index" :style="{backgroundImage:'url(' + 'http://120.27.21.136:2798/' + img + ')'}"></div>
+          <div class="swiper-slide" v-for="(img,index) in listImg" :key="index" :style="{backgroundImage:'url(' + 'http://120.78.69.178:2902/' + img + ')'}"></div>
         </div>
       </div>
       <div class="tags">
@@ -71,12 +71,11 @@ export default {
   created() {
     this.$http
       .get(
-        "http://120.27.21.136:2798/user/img/get?project_id=" +
+        "http://120.78.69.178:2902/user/img/get?project_id=" +
           this.$route.query.id
       )
       .then(res => {
-
-        if(res.data.code != 200 ) {
+        if (res.data.code != 200) {
           return;
         }
 
@@ -86,9 +85,7 @@ export default {
         });
         this.tagName = this.tags[0];
         let tempImgList = res.data.data;
-        console.log(tempImgList)
         tempImgList.forEach(function(ele, index) {
-          console.log(ele)
           ele.data.forEach(function(element, idx) {
             self.listImg.push(element.img_url);
           });
@@ -127,7 +124,7 @@ export default {
       speed: 300,
       autoplay: false
     });
-    this.swiper.on("slideChange", ()=>{
+    this.swiper.on("slideChange", () => {
       this.idx = this.swiper.activeIndex + 1;
       let res = this.items.filter(ele => {
         return ele.start < this.idx && this.idx <= ele.end;
@@ -188,7 +185,7 @@ export default {
 
 .back {
   position: absolute;
-  right: .5rem;
+  right: 0.5rem;
   top: 0;
   width: 1rem;
   padding-left: 10px;

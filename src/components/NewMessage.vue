@@ -17,7 +17,7 @@
               </ul>
             </div>
             <div class="awrapper">
-              <a :href="'http://120.27.21.136:2798/' + item.url" class="readall">阅读全文 >></a>
+              <a :href="'http://120.78.69.178:2902/' + item.url" class="readall">阅读全文 >></a>
             </div>
             <!-- <div class="btn" @click="checkAllInfo(item.dynamic_id)">阅读全文&nbsp;>></div> -->
             <div class="split"></div>
@@ -92,7 +92,7 @@ export default {
     },
     // loadData() {
     //   this.$http
-    //     .get("http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1")
+    //     .get("http://120.78.69.178:2902/user/dynamic/list?project_id=1&page=1")
     //     .then(res => {
     //       console.log(res.data.data);
     //       this.items = res.data.data.data.concat(this.items);
@@ -132,7 +132,7 @@ export default {
       // });
       let result = this.$http
         .get(
-          "http://120.27.21.136:2798/user/dynamic/list?project_id=" +
+          "http://120.78.69.178:2902/user/dynamic/list?project_id=" +
             this.$route.query.project_id +
             "&page=" +
             this.currentPage
@@ -182,7 +182,7 @@ export default {
   },
   created() {
     this.name = this.$route.query.pname;
-    // this.$http.get('http://120.27.21.136:2798/user/dynamic/list?project_id=1&page=1').then(function(res){
+    // this.$http.get('http://120.78.69.178:2902/user/dynamic/list?project_id=1&page=1').then(function(res){
     //   console.log(res)
     //   this.items = res.data
     //   this.$nextTick(()=>{
