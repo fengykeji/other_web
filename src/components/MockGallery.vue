@@ -50,45 +50,22 @@ export default {
       return this.idx;
     }
   },
-  mounted() {
-    this.swiper = new Swiper(".swiper-container", {
-      runCallbacks: true,
-      observeParents: true,
-      autoplay: false,
-      onSlideChangeEnd: () => {
-        this.idx = this.swiper.activeIndex + 1;
-        let res = this.items.filter(ele => {
-          return ele.start < this.idx && this.idx <= ele.end;
-        });
-        this.name = res[0].name;
-        this.tmplength = res[0].length;
-        this.startIndex = this.idx - res[0].start;
-      }
-    });
-
-    // this.swiper.on("slideChange", () => {
-    //   this.idx = this.swiper.activeIndex + 1;
-    //   let res = this.items.filter(ele => {
-    //     return ele.start < this.idx && this.idx <= ele.end;
-    //   });
-    //   this.name = res[0].name;
-    //   this.tmplength = res[0].length;
-    //   this.startIndex = this.idx - res[0].start;
-    // });
-  },
   methods: {
     changeIndex(item, index) {
+      console.log(item)
       this.swiper.swipeTo(item.start, false);
       this.current = this.listImg[index];
-      console.log(this.current);
-      console.log(index);
+      this.idx = item.start +1;;
+      this.name = item.name;
+      this.startIndex = 1;
+      this.tmplength = item.length;
     },
 
     getBack() {
       this.$router.go(-1);
     }
   },
-  created() {
+  mounted() {
     this.$http
       .get(
         "http://120.78.69.178:2902/user/img/get?project_id=" +
@@ -134,6 +111,23 @@ export default {
         // })
         this.total = this.listImg.length;
         // this.listImg = this.listImgs[this.activeIndex].data;
+
+        this.$nextTick(() => {
+          this.swiper = new Swiper(".swiper-container", {
+            runCallbacks: true,
+            observeParents: true,
+            autoplay: false,
+            onSlideChangeEnd: () => {
+              this.idx = this.swiper.activeIndex + 1;
+              let res = this.items.filter(ele => {
+                return ele.start < this.idx && this.idx <= ele.end;
+              });
+              this.name = res[0].name;
+              this.tmplength = res[0].length;
+              this.startIndex = this.idx - res[0].start;
+            }
+          });
+        });
       });
   }
 };

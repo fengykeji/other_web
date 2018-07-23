@@ -1,128 +1,143 @@
 <template>
-    <div id="unitDetail">
-        <div class="nav">
-            <div class="back" @click="getBack"></div>
-            {{$route.params.DYMC ? $route.params.LDMC + $route.params.DYMC :$route.params.info.build_name + $route.params.LDMC}}
-        </div>
-        <div class="pullUp" v-show="spread" @touchmove.prevent  >
-            <div class="sinfowrapper" >
-
-                <div class="sinfo">
-                    <div>
-                        <!-- <p>单元个数: <span>{{$route.query.unit_id === 0 ? 1 :$route.query.unit_id}}</span></p> -->
-                        <p>总户数: <span>{{$route.params.info.total_house_num}}</span></p>
-                        <p>楼上层数: <span>{{$route.params.info.upper_floor_num}}层</span></p>
-                        <!-- <p>梯户比: <span>2梯4户</span></p> -->
-                        <p>开盘时间: <span>{{$route.params.info.open_time}}</span></p>
-                    </div>
-                    <div>
-                        <p>楼下层数: <span>{{$route.params.info.down_floor_num}}层</span></p>
-                        <p>开盘方式: <span>{{$route.params.info.open_way}}</span></p>
-                        <p>交房时间: <span>{{$route.params.info.handing_room_time}}</span></p>
-                    </div>
-                </div>
-                <div class="img">
-                    <div class="imgwrapper" @click="pullUp"></div>
-                </div>
-            </div>
-        </div>
-        <div class="wrapper">
-
-            <div class="pull">
-                <div class="pic" @click="pullDown">
-                </div>
-            </div>
-            <div class="split">
-            </div>
-            <div class="tags">
-                <div class="tag scheduled">已定</div>
-                <div class="tag sold">已售</div>
-                <div class="tag unsold">未售</div>
-            </div>
-            <div class="content">
-                <div class="floor">
-                    <ul>
-                        <li v-for="(floorNum,index) in floorNums" :key="index" class="floorwrapper">
-                            F{{floorNum}}
-                        </li>
-                    </ul>
-                </div>
-                <div class="item" id="scroll">
-                    <ul :style="{width:dynamicWidth}">
-                        <li v-for="(item,index) in items" :key="index">
-                            <ul class="itmwrapper">
-                                <li v-for="(itm,idx) in item" @click="choose(itm)" :key="idx" class="itm" :class="{scheduled:itm.FJZT==='3' || itm.FJZT==='2'||itm.FJZT==='5'||itm.FJZT==='6',sold:itm.FJZT==='4',unsold:itm.FJZT==='0' || itm.FJZT ==='1'}">{{itm.FJMC}}</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="mask" v-show="showModal">
-            <div class="modal">
-                <div class="mtitle">
-                    {{$route.params.info.build_name}}
-                    <div class="mclose" @click="closeModal">x</div>
-                </div>
-                <div class="minfo">
-                    <div class="mt">
-                        <div class="squart"></div>
-                        房源
-                    </div>
-                    <div class="mdetail">
-                        <p class="text">房号:
-                            <span class="txt">{{activeItem.FJMC}}</span>
-                        </p>
-                        <p class="text">楼栋:
-                            <span class="txt">{{activeItem.LDMC}}</span>
-                        </p>
-                        <p class="text">单元:
-                            <span class="txt">{{activeItem.DYMC}}</span>
-                        </p>
-                        <p class="text">楼层:
-                            <span class="txt">{{activeItem.FLOORNUM}}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="mprice">
-                    <div class="mt">
-                        <div class="squart"></div>
-                        价格
-                    </div>
-                    <div class="mdetail">
-                        <p class="text">计价规则:
-                            <span class="txt">{{activeItem.JJGZ}}</span>
-                        </p>
-                        <p class="text">单价:
-                            <span class="txt">{{activeItem.JZDJ}}</span>
-                        </p>
-                        <p class="text">总价:
-                            <span class="txt">{{activeItem.FJZJ}}</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="mparameter">
-                    <div class="mt">
-                        <div class="squart"></div>
-                        物业 住宅参数
-                    </div>
-                    <div class="mdetail">
-                        <p class="text">建筑面积:
-                            <span class="txt">{{activeItem.JZMJ}}</span>
-                        </p>
-                        <p class="text">套内面积:
-                            <span class="txt">{{activeItem.TNMJ}}</span>
-                        </p>
-                        <p class="text">户型信息:
-                            <span class="txt">{{activeItem.HXMC}}</span>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+  <div id="unitDetail">
+    <div class="nav">
+      <div class="back" @click="getBack"></div>
+      {{$route.params.DYMC ? $route.params.LDMC + $route.params.DYMC :$route.params.info.build_name + $route.params.LDMC}}
     </div>
+    <div class="pullUp" v-show="spread" @touchmove.prevent>
+      <div class="sinfowrapper">
+
+        <div class="sinfo">
+          <div>
+            <!-- <p>单元个数: <span>{{$route.query.unit_id === 0 ? 1 :$route.query.unit_id}}</span></p> -->
+            <p>总户数:
+              <span>{{$route.params.info.total_house_num}}</span>
+            </p>
+            <p>楼上层数:
+              <span>{{$route.params.info.upper_floor_num}}层</span>
+            </p>
+            <!-- <p>梯户比: <span>2梯4户</span></p> -->
+            <p>开盘时间:
+              <span>{{$route.params.info.open_time}}</span>
+            </p>
+          </div>
+          <div>
+            <p>楼下层数:
+              <span>{{$route.params.info.down_floor_num}}层</span>
+            </p>
+            <p>开盘方式:
+              <span>{{$route.params.info.open_way}}</span>
+            </p>
+            <p>交房时间:
+              <span>{{$route.params.info.handing_room_time}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="img">
+          <div class="imgwrapper" @click="pullUp"></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+
+      <div class="pull">
+        <div class="pic" @click="pullDown">
+        </div>
+      </div>
+      <div class="split">
+      </div>
+      <div class="tags">
+        <div class="tag scheduled">已定</div>
+        <div class="tag sold">已售</div>
+        <div class="tag unsold">未售</div>
+      </div>
+      <div class="content">
+        <div class="floor">
+          <ul>
+            <li v-for="(floorNum,index) in floorNums" :key="index" class="floorwrapper">
+              F{{floorNum}}
+            </li>
+          </ul>
+        </div>
+        <div class="item" id="scroll">
+          <ul :style="{width:dynamicWidth}">
+            <li v-for="(item,index) in items" :key="index">
+              <ul class="itmwrapper">
+                <li v-for="(itm,idx) in item" @click="choose(itm)" :key="idx" class="itm" :class="{scheduled:itm.FJZT==='3' || itm.FJZT==='2'||itm.FJZT==='5'||itm.FJZT==='6',sold:itm.FJZT==='4',unsold:itm.FJZT==='0' || itm.FJZT ==='1'}">{{itm.FJMC}}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mask" v-show="showModal">
+      <div class="modal">
+        <div class="mtitle">
+          {{$route.params.info.build_name}}
+          <div class="mclose" @click="closeModal">x</div>
+        </div>
+        <!-- <div>
+          <img class="mclose" @click="closeModal" src='../assets/close.png' />
+        </div> -->
+        <div class="minfo">
+          <div class="mt">
+            <div class="squart"></div>
+            房源
+          </div>
+          <div class="mdetail">
+            <p class="text">房号:
+              <span class="txt">{{activeItem.FJMC}}</span>
+            </p>
+            <p class="text">楼栋:
+              <span class="txt">{{activeItem.LDMC}}</span>
+            </p>
+            <p class="text">单元:
+              <span class="txt">{{activeItem.DYMC}}</span>
+            </p>
+            <p class="text">楼层:
+              <span class="txt">{{activeItem.FLOORNUM}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="mprice">
+          <div class="mt">
+            <div class="squart"></div>
+            价格
+          </div>
+          <div class="mdetail">
+            <p class="text">计价规则:
+              <span class="txt">{{activeItem.JJGZ}}</span>
+            </p>
+            <p class="text">单价:
+              <span class="txt">{{activeItem.JZDJ}}</span>
+            </p>
+            <p class="text">总价:
+              <span class="txt">{{activeItem.FJZJ}}</span>
+            </p>
+          </div>
+        </div>
+        <div class="mparameter">
+          <div class="mt">
+            <div class="squart"></div>
+            物业 住宅参数
+          </div>
+          <div class="mdetail">
+            <p class="text">建筑面积:
+              <span class="txt">{{activeItem.JZMJ}}</span>
+            </p>
+            <p class="text">套内面积:
+              <span class="txt">{{activeItem.TNMJ}}</span>
+            </p>
+            <p class="text">户型信息:
+              <span class="txt">{{activeItem.HXMC}}</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -135,7 +150,7 @@ export default {
       activeItem: {},
       // condition:true,
       showModal: false,
-      spread:false
+      spread: false
     };
   },
   computed: {
@@ -156,25 +171,25 @@ export default {
     },
     choose(itm) {
       // console.log(itm.FJZT)
-      if(itm.FJZT !=='0' && itm.FJZT !=='1'){
-        return
+      if (itm.FJZT !== "0" && itm.FJZT !== "1") {
+        return;
       }
       this.activeItem = itm;
       this.showModal = true;
     },
-    pullUp(){
-        this.spread = false
+    pullUp() {
+      this.spread = false;
     },
-    pullDown(){
-        this.spread = true
+    pullDown() {
+      this.spread = true;
     },
-    getBack(){
-        this.$router.go(-1)
-        // this.$router.push({name:'projectView',params:{id:this.$route.query.project_id}})
+    getBack() {
+      this.$router.go(-1);
+      // this.$router.push({name:'projectView',params:{id:this.$route.query.project_id}})
     }
   },
   created() {
-      console.log(this.$route.params)
+    console.log(this.$route.params);
     this.$http
       .get(
         `http://120.78.69.178:2902/user/yunsuan/unit?build_id=${
@@ -212,7 +227,7 @@ div#scroll {
   width: 100%;
 }
 /* .wrapper { */
-  /* margin-top: 1rem; */
+/* margin-top: 1rem; */
 /* } */
 .back {
   position: absolute;
@@ -334,7 +349,7 @@ div#scroll {
   top: 0;
   right: 0.3rem;
   font-weight: normal;
-  font-size: 17px;
+  font-size: 20px;
 }
 .minfo {
   font-size: 14px;
@@ -386,24 +401,24 @@ div#scroll {
   background: url("../assets/pullUp.png");
   background-size: cover;
 }
-.sinfowrapper{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    background-color: #ffffff
+.sinfowrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #ffffff;
 }
-.sinfo{
-    display: flex;
-    font-size: 14px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.1rem 0.3rem
+.sinfo {
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1rem 0.3rem;
 }
-.sinfo span{
-    padding-left: 0.2rem;
+.sinfo span {
+  padding-left: 0.2rem;
 }
-.sinfo p{
-    margin-bottom: 0.3rem;
+.sinfo p {
+  margin-bottom: 0.3rem;
 }
 </style>

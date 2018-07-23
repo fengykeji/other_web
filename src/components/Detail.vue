@@ -8,7 +8,7 @@
      </div>
      <div id="sellPoint">
          <p id="title">户型卖点:</p>
-         <p id="sellPointDetail">{{detailC.sell_point}}</p>
+         <p id="sellPointDetail" class='title-info-text'>{{detailC.sell_point}}</p>
      </div>
   </div>
      <div id="split"></div>
@@ -40,6 +40,9 @@ export default {
   padding-top: 0.32rem;
   padding-left: 0.28rem;
   padding-bottom: 0.69rem;
+}
+.title-info-text{
+  padding:5px 10px 5px 0;
 }
 sup {
   /* font-size: 0.12rem; */

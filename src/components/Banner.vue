@@ -1,60 +1,50 @@
 <template>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="(data,index) in listImgC" :style="{backgroundImage: 'url(' + 'http://120.78.69.178:2902/'+data.img_url +')'}" :key="index"></div>
-    </div>
-  </div>
+ 
 </template>
 
 
 <script>
-import Swiper from "swiper";
-import "swiper/dist/idangerous.swiper.css";
+
 export default {
   name: "Banner",
-  props: ["listImgC"],
+  props: ["listImgC", "tags"],
+  data() {
+    return {
+      mySwiper: null,
+      current: {}
+    };
+  },
+  watch: {
+    listImgC(val) {
+      setTimeout(() => {
+        this.initSwiper();
+      }, 1000);
+    }
+  },
   mounted() {
-    var swiper = new Swiper(".swiper-container", {
-      loop: true,
-      // speed:2000,
-      // uniqueNavElements: false
-      // autoplay:true,
-      observer: true
-      // observeParents:true
-      // onTouchEnd:function(){
-      //     swiper.startAutoplay()
-      // }
-    });
+    this.initSwiper();
   },
-  created() {
-    // console.log(this.listImgC)
-  },
-  updated() {
-    // console.log(this.listImgC)
+  methods: {
+    initSwiper() {
+      this.mySwiper = new Swiper(".swiper-container", {
+        onSlidePrev: swiper => {
+          this.current = this.listImgC[this.mySwiper.activeIndex];
+        },
+        onSlideNext: swiper => {
+          this.current = this.listImgC[this.mySwiper.activeIndex];
+        }
+      });
+    },
+    changeTag(tag) {
+      console.log(tag.index);
+      this.mySwiper.swipeTo(1, 0 ,false);
+      // this.current = this.listImgC[tag.index];
+    }
   }
 };
 </script>
 
 <style scoped>
-.swiper-container {
-  width: 6.79rem;
-  height: 4.96rem;
-  /* padding-left: 1.85rem; */
-  /* padding-right: 2.16rem; */
-}
-.slide-wrapper {
-  width: 100%;
-  height: 100%;
-}
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-.swipe-slide img {
-  width: 100%;
-  height: 100%;
-}
+
 </style>
 

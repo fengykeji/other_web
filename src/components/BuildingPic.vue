@@ -59,6 +59,7 @@ export default {
     },
     toggle() {
       this.condition = !this.condition;
+      this.cancel();
     },
     change(item, index) {
       // if(item.)
