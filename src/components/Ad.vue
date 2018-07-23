@@ -36,7 +36,7 @@ export default {
   top: 0;
   left: 0;
   z-index: 9999;
-  display: flex;
+  display: -webkit-flex;
   align-items: center;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;

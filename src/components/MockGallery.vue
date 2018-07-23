@@ -25,7 +25,7 @@
 
 <script>
 import Swiper from "swiper";
-import "swiper/dist/css/swiper.css";
+import "swiper/dist/idangerous.swiper.css";
 export default {
   name: "MockGallery",
   data: function() {
@@ -121,18 +121,27 @@ export default {
     this.swiper = new Swiper(".swiper-container", {
       observeParents: true,
       observer: true,
-      speed: 300,
-      autoplay: false
+      autoplay: false,
+      onSlideChangeEnd: () => {
+        this.idx = this.swiper.activeIndex + 1;
+        let res = this.items.filter(ele => {
+          return ele.start < this.idx && this.idx <= ele.end;
+        });
+        this.name = res[0].name;
+        this.tmplength = res[0].length;
+        this.startIndex = this.idx - res[0].start;
+      }
     });
-    this.swiper.on("slideChange", () => {
-      this.idx = this.swiper.activeIndex + 1;
-      let res = this.items.filter(ele => {
-        return ele.start < this.idx && this.idx <= ele.end;
-      });
-      this.name = res[0].name;
-      this.tmplength = res[0].length;
-      this.startIndex = this.idx - res[0].start;
-    });
+
+    // this.swiper.on("slideChange", () => {
+    //   this.idx = this.swiper.activeIndex + 1;
+    //   let res = this.items.filter(ele => {
+    //     return ele.start < this.idx && this.idx <= ele.end;
+    //   });
+    //   this.name = res[0].name;
+    //   this.tmplength = res[0].length;
+    //   this.startIndex = this.idx - res[0].start;
+    // });
   }
 };
 </script>

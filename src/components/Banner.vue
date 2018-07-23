@@ -9,7 +9,7 @@
 
 <script>
 import Swiper from "swiper";
-import "swiper/dist/css/swiper.css";
+import "swiper/dist/idangerous.swiper.css";
 export default {
   name: "Banner",
   props: ["listImgC"],

@@ -122,11 +122,11 @@
 
       <div class="project_news space">
         <div class="head_mod">
-          <h3>
-            <font class="title">项目动态</font>&nbsp;
-            <font style="color:#4CA0FF;">(共{{dynamic.count}}条)</font>
-          </h3>
-          <a @click="checkAllMessage">查看更多>></a>
+          <div>
+            <font class="title" style="color:#666; font-size:16px">项目动态</font>
+            <font style="color:#4CA0FF; font-size:12px">(共{{dynamic.count}}条)</font>
+          </div>
+          <span @click="checkAllMessage" class='showInfo'>查看更多>></span>
         </div>
         <div class="project_notes">
           <a class="project_content">
@@ -208,7 +208,7 @@
 <script>
 // let coordinates = require("./coordinates@2x.png");
 import Swiper from "swiper";
-import "swiper/dist/css/swiper.css";
+import "swiper/dist/idangerous.swiper.css";
 // var mark = false;
 export default {
   name: "projectView",
@@ -361,16 +361,16 @@ export default {
         _this.loadding = true;
         _this.$nextTick(function() {
           var swiper = new Swiper(".swiper-container", {
+            runCallbacks: true,
             observeParents: true,
-            observer: true,
-            speed: 300,
-            autoplay: false
-          });
-          swiper.on("slideChange", function() {
-            if (_this.project_img.length > 0) {
-              _this.idx = swiper.activeIndex + 1;
-            } else {
-              _this.idx = 0;
+            autoplay: false,
+            onSlideChangeEnd: () => {
+              if (this.project_img.length > 0) {
+                this.idx = swiper.activeIndex + 1;
+                console.log(this.idx);
+              } else {
+                this.idx = 0;
+              }
             }
           });
         });
@@ -480,6 +480,13 @@ function slider() {
   font-size: 13px;
   margin-top: 0.1rem;
   color: #666;
+}
+.showInfo{
+  font-size: 14px;
+   color: #999;
+   position: absolute;
+   right: 0;
+   top:22px;
 }
 .see_info {
   text-align: right;
@@ -851,9 +858,9 @@ div#scroll {
 #detail .head_mod {
   /* float: left; */
   width: 100%;
-  height: 1.5625rem;
   display: flex;
   align-items: center;
+  position: relative;
 }
 #detail .head_mod h3 {
   float: left;

@@ -5,7 +5,7 @@
   "author": "",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --port 8080 --host  192.168.0.115",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "better-scroll": "^1.11.1",
     "element-ui": "^2.3.8",
-    "swiper": "^4.2.6",
+    "swiper": "2.7.6",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue2-better-scroll": "^1.0.7"
