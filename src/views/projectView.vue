@@ -74,32 +74,7 @@
             <a href="javascript:;" @click="checkPropertyDetail">查看全部>></a>
           </div>
         </a>
-
       </div>
-
-      <!-- <div class="bulding_info space"> -->
-
-      <!-- <div class="info_detail">
-          <div class="info_content">
-            <font>开发商：</font>
-            <font>{{project_base_info.developer_name}}</font>
-          </div>
-          <div class="info_content">
-            <font>最新开盘：</font>
-            <font>{{build_info.open_time}}</font>
-          </div>
-          <div class="info_content">
-            <font>交房时间：</font>
-            <font>{{build_info.handing_room_time}}</font>
-          </div>
-          <div class="info_content">
-          <font>产权：</font>
-          <font>70年</font>
-          <font>70年</font>
-          </div>
-        </div> -->
-      <!-- </div> -->
-
       <div class="project_news space">
         <div class="head_mod">
           <div>
@@ -1116,6 +1091,7 @@ div.head_mod {
 .flexUl {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .houseCancle {
@@ -1149,14 +1125,13 @@ div.head_mod {
 } */
 
 .liItem {
-  /* height: 0.6rem; */
   line-height: 0.7rem;
   text-align: center;
   padding: 0 0.2rem;
   margin-right: 0.2rem;
   background-color: #fff;
   color: #999;
-  /* margin: 0 0.15rem; */
+  width: 50px;
 }
 .anothercolorful:nth-child(1) {
   background: #d5f2ff;
@@ -1211,6 +1186,7 @@ div.head_mod {
 }
 .bder {
   position: relative;
+  width: 60px;
 }
 .bder::after {
   content: "";
