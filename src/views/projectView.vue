@@ -11,7 +11,6 @@
             <h4>云算渠道</h4>
             <p>房产渠道专业平台</p>
           </div>
-          <!-- <a class="downLoad" v-bind:href="'http://'+project_base_info.yunsuan_url">下载APP</a> -->
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
       </div>
@@ -38,30 +37,11 @@
       <!-- <div class="show"></div> -->
       <div class="house_detail space">
         <div class="house_name">
-          <h4>
+          <div>
             <font class="house_title">{{project_base_info.project_name}}</font>
             <font class="house_state" style="color:#1B98FF">{{project_base_info.sale_state}}</font>
-          </h4>
+          </div>
         </div>
-        <!-- <div class="house_cancle">
-					<div class="fix">
-						<div class="house_can">
-							<a v-for="(item,index) in cancle" class="normal_house" href="javascript:;" :key='index'>{{item}}</a>
-						</div>
-						<div class="house_function">
-							<a class="school_house" href="javascript:;">学区房</a>
-							<a class="elctree_house" href="javascript:;">地铁房</a>
-							<a class="elevator_house" href="javascript:;">电梯房</a>
-						</div>
-					</div>
-					<div class="house_total">
-						<div class="attention_count">
-							<font>关注人数：</font>
-							<font>{{focus.num}}</font>
-						</div>
-						<a class="attention_btn" href="javascript:;"></a>
-					</div>
-				</div> -->
         <div class="houseCancle">
           <div class="tagwrapper">
             <div class="houseCan">
@@ -481,12 +461,12 @@ function slider() {
   margin-top: 0.1rem;
   color: #666;
 }
-.showInfo{
+.showInfo {
   font-size: 14px;
-   color: #999;
-   position: absolute;
-   right: 0;
-   top:22px;
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: 22px;
 }
 .see_info {
   text-align: right;

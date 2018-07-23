@@ -34,6 +34,7 @@ export default {
       listImg: [],
       activeIndex: 0,
       tags: [],
+      current: {},
       idx: 1,
       tagName: "",
       total: 0,
@@ -49,23 +50,42 @@ export default {
       return this.idx;
     }
   },
-  //   computed:{
-  //       listImg:function(){
-  //           return this.listImgs[this.activeIndex].data
-  //       }
-  //   },
+  mounted() {
+    this.swiper = new Swiper(".swiper-container", {
+      runCallbacks: true,
+      observeParents: true,
+      autoplay: false,
+      onSlideChangeEnd: () => {
+        this.idx = this.swiper.activeIndex + 1;
+        let res = this.items.filter(ele => {
+          return ele.start < this.idx && this.idx <= ele.end;
+        });
+        this.name = res[0].name;
+        this.tmplength = res[0].length;
+        this.startIndex = this.idx - res[0].start;
+      }
+    });
+
+    // this.swiper.on("slideChange", () => {
+    //   this.idx = this.swiper.activeIndex + 1;
+    //   let res = this.items.filter(ele => {
+    //     return ele.start < this.idx && this.idx <= ele.end;
+    //   });
+    //   this.name = res[0].name;
+    //   this.tmplength = res[0].length;
+    //   this.startIndex = this.idx - res[0].start;
+    // });
+  },
   methods: {
+    changeIndex(item, index) {
+      this.swiper.swipeTo(item.start, 1000);
+      this.current = this.listImg[index];
+      console.log(this.current);
+      console.log(index);
+    },
+
     getBack() {
       this.$router.go(-1);
-    },
-    changeIndex(item, index) {
-      this.swiper.slideTo(item.start, 1000);
-      // this.name = item.name
-      // this.tmplength = item.length
-      // this.tagName = ta
-      // this.idx = 1
-      // this.activeIndex = index;
-      // this.listImg = this.listImgs[this.activeIndex].data;
     }
   },
   created() {
@@ -78,7 +98,6 @@ export default {
         if (res.data.code != 200) {
           return;
         }
-
         var self = this;
         this.tags = res.data.data.map(ele => {
           return ele.name;
@@ -116,32 +135,6 @@ export default {
         this.total = this.listImg.length;
         // this.listImg = this.listImgs[this.activeIndex].data;
       });
-  },
-  mounted() {
-    this.swiper = new Swiper(".swiper-container", {
-      observeParents: true,
-      observer: true,
-      autoplay: false,
-      onSlideChangeEnd: () => {
-        this.idx = this.swiper.activeIndex + 1;
-        let res = this.items.filter(ele => {
-          return ele.start < this.idx && this.idx <= ele.end;
-        });
-        this.name = res[0].name;
-        this.tmplength = res[0].length;
-        this.startIndex = this.idx - res[0].start;
-      }
-    });
-
-    // this.swiper.on("slideChange", () => {
-    //   this.idx = this.swiper.activeIndex + 1;
-    //   let res = this.items.filter(ele => {
-    //     return ele.start < this.idx && this.idx <= ele.end;
-    //   });
-    //   this.name = res[0].name;
-    //   this.tmplength = res[0].length;
-    //   this.startIndex = this.idx - res[0].start;
-    // });
   }
 };
 </script>
