@@ -8,7 +8,7 @@
       </div>
       <div class="tags">
         <ul class="tags-wrapper">
-          <li class="tag" v-for="(tag ) in tags" @click="changeTag(tag)" :class="current.tag == tag.name?'active':''" :key="tag.name">
+          <li class="tag" v-for="(tag ) in tags" @click="changeTag(tag)" :class="current== tag.name?'active':''" :key="tag.name">
             <span>{{tag.name}}</span>
           </li>
         </ul>
@@ -90,7 +90,6 @@ export default {
         .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
         .then(function(response) {
           console.log("-----------------------------------");
-          console.log(response.data.data);
           self.detail = response.data.data.baseInfo;
           response.data.data.imgInfo.forEach(element => {
             self.tags.push(element.type);

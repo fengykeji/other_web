@@ -1117,6 +1117,8 @@ div.head_mod {
 .houseFunction {
   height: 0.7rem;
   margin-top: 0.2rem;
+  width: 100%;
+  text-align: center;
 }
 .fullHeight {
   height: 100%;
@@ -1132,6 +1134,7 @@ div.head_mod {
   background-color: #fff;
   color: #999;
   width: 50px;
+  display: inline-block;
 }
 .anothercolorful:nth-child(1) {
   background: #d5f2ff;
