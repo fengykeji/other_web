@@ -1,12 +1,12 @@
 <template>
-    <div id="uniqueItem">
-        <div class="title">
-            <slot></slot>
-        </div>
-        <div class="content">
-            <slot name="content"></slot>
-        </div>
+  <div id="uniqueItem">
+    <div class="title">
+      <slot></slot>
     </div>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -18,9 +18,12 @@ export default {
 <style>
 #uniqueItem {
   display: flex;
+  display: -webkit-flex;
   align-items: flex-start;
+  -webkit-align-items: flex-start;
+
   position: relative;
-  border-bottom: 1px solid #dcdcdc
+  border-bottom: 1px solid #dcdcdc;
 }
 /* #item::after {
   content: "";
@@ -40,12 +43,10 @@ export default {
 #uniqueItem .title {
   width: 3.5rem;
   margin: 0.3rem 0;
-  flex-shrink: 0
+  flex-shrink: 0;
 }
 #uniqueItem .content {
   flex-grow: 1;
   margin: 0.3rem 0;
 }
-
-
 </style>

@@ -27,8 +27,11 @@ export default {
 <style scoped>
 .uniqueGetBack{
   display: flex;
-  align-items: center;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
   position: relative;
   font-size: 18px;
   border-bottom: 0.1px solid #eee

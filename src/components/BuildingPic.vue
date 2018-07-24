@@ -146,7 +146,8 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   /* background-color: red; */
   z-index: 999;
-  display: flex;
+ display: flex;
+  display: -webkit-flex;
 }
 .close {
   width: 1rem;
@@ -154,8 +155,11 @@ export default {
   /* background-color:aqua; */
   text-align: center;
   display: flex;
-  align-items: center;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
 .close span {
   /* color: #ffffff; */
@@ -166,8 +170,11 @@ export default {
 }
 .itemswrapper {
   display: flex;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content: center;
   align-items: center;
+  -webkit-align-items: center;
 }
 .switchBtn:nth-child(1) {
   margin-top: 0.5rem;

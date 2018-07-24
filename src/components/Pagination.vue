@@ -43,8 +43,10 @@ export default {
   height: 1.2rem;
   width: 100%;
   height: 100%;
-  display: flex;
+   display: flex;
+  display: -webkit-flex;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
   padding: 0.2rem 0;
   z-index: 999;
 }
@@ -55,6 +57,7 @@ export default {
 #pagination button.el-button.btn {
   width: 100%;
   height: 100%;
+  
   display: flex;
   justify-content: center;
   align-items: center;

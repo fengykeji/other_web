@@ -73,7 +73,9 @@ export default {
 }
 div#download {
   display: flex;
-  align-items: center
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
 }
 #download  a{
   width: 2rem;

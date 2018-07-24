@@ -8,7 +8,7 @@
       </div>
       <div class="tags">
         <ul class="tags-wrapper">
-          <li class="tag" v-for="(tag ) in tags" @click="changeTag(tag)" :class="current== tag.name?'active':''" :key="tag.name">
+          <li class="tag" v-for="(tag ) in tags" @click="changeTag(tag)" :class="current.tag== tag.name?'active':''" :key="tag.name">
             <span>{{tag.name}}</span>
           </li>
         </ul>
@@ -133,7 +133,11 @@ export default {
   padding-left: 0.28rem;
   padding-right: 0.28rem;
   display: flex;
-  justify-content: space-around;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
 .tags .tags-wrapper .tag {
   /* width: 1.5rem; */
@@ -144,6 +148,8 @@ export default {
   color: #606266;
   border-radius: 4px;
   padding: 3px 5px;
+  width: 50px;
+  margin: 0 10px;
 }
 
 .tags .tags-wrapper .tag.active {

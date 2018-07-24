@@ -176,7 +176,9 @@ export default {
   width: 100%;
   height: 1rem;
   display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
 }
 
 .back {
@@ -207,7 +209,8 @@ export default {
   bottom: 1rem;
 }
 .flx {
-  display: flex;
+   display: flex;
+  display: -webkit-flex;
   width: 100%;
   /* background-color: aliceblue; */
   font-size: 12px;
@@ -218,6 +221,7 @@ export default {
   border: 1px solid #40a9ff;
   margin-right: 5px;
   border-radius: 1px;
+  width: 45px;
 }
 .idx {
   position: absolute;

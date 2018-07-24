@@ -103,8 +103,10 @@ export default {
 }
 .picBox {
   display: flex;
-  flex-wrap: wrap;
+  display: -webkit-flex;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
+  flex-wrap: wrap;
 }
 .pic {
   /* width: calc(33.333% - 0.4rem); */

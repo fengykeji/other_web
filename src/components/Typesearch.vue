@@ -1,23 +1,6 @@
 <template>
   <div id="typesearchWrapper">
     <p class="title">本楼盘其他户型</p>
-    <!-- <div id="scroll">
-      <ul id="wrapper">
-        <li >
-          <img class='otherImg' v-bind:src="'http://120.78.69.178:2902/'+item.img_url" />
-          <div id="info">
-            <p id="type">
-              <span class="typeL">{{item.house_type_name}}</span>
-              <span class="typeR">{{item.property_area_min}}㎡-{{item.property_area_max}}㎡
-              </span>
-            </p>
-            <p class="type">{{item.house_type}}</p>
-            <p id="isOnSale">{{item.sale_state}}</p>
-          </div>
-        </li>
-      </ul>
-    </div> -->
-
     <div id="scroll">
       <div class="house_type imgwrapper">
         <div v-for="(item,index) in items" :key="index" class="list" @click="check(item)">
@@ -151,8 +134,10 @@ span.typeL {
 #type {
   font-size: 0.36rem;
   /* position: relative; */
-  display: flex;
+   display: flex;
+  display: -webkit-flex;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
 }
 span.typeR {
   /* position: absolute; */

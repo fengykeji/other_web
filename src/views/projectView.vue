@@ -8,7 +8,7 @@
             <img src="../assets/log.gif" alt="" />
           </div>
           <div class="head_text">
-            <h4>云算渠道</h4>
+            <p>云算渠道</p>
             <p>房产渠道专业平台</p>
           </div>
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
@@ -1090,7 +1090,10 @@ div.head_mod {
 
 .flexUl {
   display: flex;
+  display: -webkit-flex;
+
   align-items: center;
+  -webkit-align-items: center;
   width: 100%;
 }
 
@@ -1128,6 +1131,7 @@ div.head_mod {
 
 .liItem {
   line-height: 0.7rem;
+  height: 0.7rem;
   text-align: center;
   padding: 0 0.2rem;
   margin-right: 0.2rem;

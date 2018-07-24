@@ -237,9 +237,13 @@ div#scroll {
 .pull {
   width: 100%;
   height: 1rem;
-  display: flex;
+   display: flex;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content:center;
   align-items: center;
+  -webkit-align-items: center;
+
 }
 .pic {
   width: 0.56rem;
@@ -256,8 +260,10 @@ div#scroll {
 .tags {
   width: 100%;
   height: 1.3rem;
-  display: flex;
+    display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   padding-left: 0.5rem;
   /* margin: 0 0.3rem */
 }
@@ -284,7 +290,8 @@ div#scroll {
 }
 .content {
   padding: 0.3rem;
-  display: flex;
+    display: flex;
+  display: -webkit-flex;
 }
 .floor {
   margin: 0.2rem;
@@ -355,8 +362,10 @@ div#scroll {
   font-size: 14px;
 }
 .mt {
-  display: flex;
+    display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   height: 1rem;
 }
 .squart {
@@ -391,9 +400,12 @@ div#scroll {
 .img {
   width: 100%;
   height: 1rem;
-  display: flex;
+    display: flex;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content:center;
   align-items: center;
+  -webkit-align-items: center;
 }
 .imgwrapper {
   width: 0.56rem;
@@ -409,10 +421,14 @@ div#scroll {
   background-color: #ffffff;
 }
 .sinfo {
+
   display: flex;
-  font-size: 14px;
+  display: -webkit-flex;
   justify-content: space-between;
+  -webkit-justify-content:space-between;
   align-items: center;
+  -webkit-align-items: center;
+  font-size: 14px;
   padding: 0.1rem 0.3rem;
 }
 .sinfo span {

@@ -184,15 +184,19 @@ export default {
   background-color: #dcdcdc;
 }
 .spacebetween {
-  display: flex;
+    display: flex;
+  display: -webkit-flex;
   justify-content: space-between;
+  -webkit-justify-content: space-between;
   height: 1.2rem;
   line-height: 1.2rem;
   text-align: center;
 }
 ul li {
-  display: flex;
+     display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   height: 1.2rem;
 }
 .detail {
