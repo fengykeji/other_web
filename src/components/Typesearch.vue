@@ -35,7 +35,8 @@ export default {
   },
   mounted() {
     this.id = this.$route.query.id;
-    this.house_type = this.$route.params.house_type;
+    let house_type = sessionStorage.getItem('house_type');
+    this.house_type = JSON.parse(house_type);
     this.showOtherHouse();
   },
   methods: {

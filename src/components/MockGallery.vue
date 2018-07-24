@@ -1,22 +1,22 @@
 <template>
   <div id="mock">
-    <div class="layout">
+    <div class="layout"  @click="getBack">
       <div class="nav">
-        <span class="back" @click="getBack">
+        <!-- <span class="back" @click="getBack">
           <img src="../assets/close.png" />
-        </span>
+        </span> -->
         <span class="title">动态相册</span>
       </div>
       <div class="swiper-container">
         <div class="swiper-wrapper" ref="mySwiper">
-          <div class="swiper-slide" v-for="(img,index) in listImg" :key="index" :style="{backgroundImage:'url(' + 'http://120.78.69.178:2902/' + img + ')'}"></div>
+          <div class="swiper-slide" @click.stop="detail" v-for="(img,index) in listImg" :key="index" :style="{backgroundImage:'url(' + 'http://120.78.69.178:2902/' + img + ')'}"></div>
         </div>
       </div>
       <div class="tags">
         <div class="idx">{{name}} {{startIndex}}/{{tmplength}}</div>
         <div class="aidx">全部{{aidx}}/{{total}}</div>
         <ul class="flx">
-          <li v-for="(item,index) in items" :key="index" class="tag" @click="changeIndex(item,index)" :class="{active: item.start < idx && idx <=item.end}">{{item.name}}</li>
+          <li v-for="(item,index) in items" :key="index" class="tag" @click.stop="changeIndex(item,index)" :class="{active: item.start < idx && idx <=item.end}">{{item.name}}</li>
         </ul>
       </div>
     </div>
@@ -51,6 +51,8 @@ export default {
     }
   },
   methods: {
+    detail(e) {
+    },
     changeIndex(item, index) {
       this.swiper.swipeTo(item.start, false);
       this.current = this.listImg[index];
@@ -102,8 +104,8 @@ export default {
           }
         });
 
-        this.name = this.items[0].name;
-        this.tmplength = this.items[0].length;
+        this.name = this.items[0]? this.items[0].name : "";
+        this.tmplength = this.items[0] ?  this.items[0].length : "";
 
         // this.listImgs.forEach(function(ele,index){
         //     self.total += ele.data.length

@@ -72,7 +72,7 @@
           </a>
         </div>
       </div>
-      <div class="project_dynamics" v-if='this.dynamic.count>0'>
+      <div class="project_dynamics" >
         <div class='text'>
           <font class="title" style="color:#666; font-size:16px">项目动态</font>
           <font style="color:#4CA0FF; font-size:12px">(共{{dynamic.count}}条)</font>
@@ -199,9 +199,9 @@ export default {
       let id = house.id;
       this.$router.push({
         name: "estatedetail",
-        query: { id },
-        params: { house_type: this.house_type }
+        query: { id }
       });
+      sessionStorage.setItem("house_type" , JSON.stringify(this.house_type));
     },
     checkPropertyDetail() {
       let id = this.project_base_info.project_id;
@@ -414,10 +414,10 @@ function slider() {
 }
 .project_dynamics .text {
   position: relative;
-  top: -10px;
+  top: -6px;
 }
 .project_dynamics .showInfo {
-  font-size: 14px;
+  font-size: 12px;
   color: #999;
   position: absolute;
   right: 10px;
@@ -451,7 +451,7 @@ p.secondary {
 .see_info {
   text-align: right;
   font-size: 0.6rem;
-  font-size: 14px;
+  font-size: 12px;
 }
 .see_info a {
   color: #999;
@@ -465,7 +465,7 @@ p.secondary {
   border-radius: 50%;
   z-index: 9999;
   background-color: rgba(255, 255, 255, 0.5) !important;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   line-height: 1.2rem;
 }
@@ -546,7 +546,7 @@ div#scroll {
   height: 14px;
   line-height: 14px;
   /* font-size:0.75rem; */
-  font-size: 14px;
+  font-size: 12px;
   color: #fff;
   font-weight: 500;
 }
@@ -622,18 +622,19 @@ div#scroll {
   font-size: 14px;
   margin-left: 0.5rem;
   position: absolute;
-  top: 22px;
+  top: 17px;
   right: 0;
 }
 .house_name{
   position: relative;
-  margin-top: -13px;
+  margin-top: -8px;
 }
 .house_detail .house_title {
   color: #333;
   font-size: 14px;
   font-weight: 500;
-  letter-spacing:1px
+  letter-spacing:1px;
+
 }
 .fix {
   display: flex;
@@ -736,7 +737,7 @@ div#scroll {
   line-height: 0.3rem;
   text-align: center;
   border: 1px solid #ddd;
-  font-size: 14px;
+  font-size: 12px;
   margin-right: 0.2rem;
   border-radius: 0.125rem;
 }
@@ -750,13 +751,13 @@ div#scroll {
 }
 #detail .house_detail .timer_content font {
   float: left;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
   font-weight: 500;
   text-align: center;
 }
 #detail .house_detail .house_price font:nth-child(1) {
-  font-size: 14px;
+  font-size: 12px;
   color: #737373;
 }
 #detail .house_detail .house_price font:nth-child(2) {
@@ -807,7 +808,7 @@ div#scroll {
   /* float: right; */
   text-align: right;
   /* font-size: 0.6rem; */
-  font-size: 14px;
+  font-size: 12px;
   color: #999;
 }
 #detail .head_mod h3 {
@@ -836,7 +837,7 @@ div#scroll {
   height: 0.75rem;
   line-height: 0.75rem;
   /* font-size: 0.65rem; */
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -880,14 +881,14 @@ div.head_mod {
 }
 #detail .project_notes h2 {
   /* float: left; */
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
   color: #333;
   margin-bottom: 0.2rem;
 }
 #detail .project_notes p {
   /* float: left; */
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
   padding-top: 0.1rem;
   line-height: 20px;
@@ -947,7 +948,7 @@ div.head_mod {
   width: 100%;
   display: flex;
   display: -webkit-flex;
-  font-size: 14px;
+  font-size: 12px;
 }
 #detail .project_img .house_type_content div p {
   float: left;
@@ -1020,7 +1021,7 @@ div.head_mod {
   height: 100%;
   line-height: 0.8rem;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   /* padding: 0rem 0.25rem; */
 }
@@ -1071,7 +1072,7 @@ div.head_mod {
   align-items: flex-start;
   width: 100%;
   height: 2rem;
-  font-size: 14px;
+  font-size: 12px;
   /* border: 1px solid red */
 }
 .tagwrapper {
