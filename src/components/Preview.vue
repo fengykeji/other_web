@@ -36,7 +36,8 @@ export default {
       mySwiper: null,
       current: {}
     };
-  },
+  }, 
+  
   methods: {
       goMockGallery() {
       this.$router.push({
