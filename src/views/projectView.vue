@@ -14,21 +14,12 @@
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
       </div>
-      <!-- <div class="banner_images" @click="goMockGallery">
-        <ul>
-          <li v-for="(imgs,index) in project_img" :key="index">
-            <a href="javascript:;"><img v-bind:src="'http://120.78.69.178:2902/'+imgs.img_url" /></a>
-          </li>
-
-        </ul>
-      </div> -->
       <div class="swiperbox">
         <div class="swiper-container" @click="goMockGallery">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url">
               <img v-bind:src="'http://120.78.69.178:2902/'+img.img_url" />
             </div>
-            <!-- <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url" :style="{backgroundImage:'url(' + 'http://120.78.69.178:2902/' + img.img_url + ')'}"></div> -->
             <img class="swiper-slide" v-else src="../assets/banner_default_2@2x.jpg" />
           </div>
         </div>
@@ -37,10 +28,8 @@
       <!-- <div class="show"></div> -->
       <div class="house_detail space">
         <div class="house_name">
-          <div>
             <font class="house_title">{{project_base_info.project_name}}</font>
             <font class="house_state" style="color:#1B98FF">{{project_base_info.sale_state}}</font>
-          </div>
         </div>
         <div class="houseCancle">
           <div class="tagwrapper">
@@ -58,10 +47,6 @@
           </div>
           <div class="concerned">
           </div>
-        </div>
-        <div class="complit_time timer_content">
-          <font>交房时间：</font>
-          <font>暂无数据</font>
         </div>
         <div class="house_price timer_content">
           <font>均价：</font>
@@ -634,15 +619,21 @@ div#scroll {
   line-height: 1.5rem;
 }
 .house_detail .house_state {
-  /* font-size: 0.6rem; */
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
   margin-left: 0.5rem;
+  position: absolute;
+  top: 22px;
+  right: 0;
+}
+.house_name{
+  position: relative;
+  margin-top: -13px;
 }
 .house_detail .house_title {
-  color: #666;
-  font-size: 17px;
+  color: #333;
+  font-size: 14px;
   font-weight: 500;
+  letter-spacing:1px
 }
 .fix {
   display: flex;
@@ -762,16 +753,14 @@ div#scroll {
   font-size: 14px;
   color: #666;
   font-weight: 500;
-  /* height: 0.2rem; */
-  /* line-height: 0.2rem; */
   text-align: center;
 }
 #detail .house_detail .house_price font:nth-child(1) {
-  font-size: 16px;
+  font-size: 14px;
   color: #737373;
 }
 #detail .house_detail .house_price font:nth-child(2) {
-  font-size: 16px;
+  font-size: 15px;
   color: #ff4646;
 }
 #detail .house_detail .house_local font:nth-child(1) {
@@ -1110,14 +1099,14 @@ div.head_mod {
 } */
 
 .liItem {
-  line-height: 0.7rem;
-  height: 0.7rem;
+  font-size: .12rem;
+  line-height: 0.6rem;
+  height: 0.6rem;
   text-align: center;
-  padding: 0 0.2rem;
-  margin-right: 0.2rem;
+  margin-right: 0.14rem;
   background-color: #fff;
   color: #999;
-  width: 50px;
+  width: 35px;
   display: inline-block;
 }
 .anothercolorful:nth-child(1) {
@@ -1181,7 +1170,7 @@ div.head_mod {
 }
 .bder {
   position: relative;
-  width: 60px;
+  width: 45px;
   border: 1px solid #dcdcdc;
 }
 /* .bder::after {

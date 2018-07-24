@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
     <div class="banner">
-      <div class="swiper-container">
+      <div class="swiper-container" @click="goMockGallery">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="(data,index) in listImg" :style="{backgroundImage: 'url(' + 'http://120.78.69.178:2902/'+data.img_url +')'}" :key="index"></div>
         </div>
@@ -38,6 +38,12 @@ export default {
     };
   },
   methods: {
+      goMockGallery() {
+      this.$router.push({
+        name: "gallery",
+        query: { id: this.$route.query.id }
+      });
+    },
     updateIndex: function(index) {
       this.currentIndex = index;
     },
@@ -85,42 +91,40 @@ export default {
       this.listImg = [];
       var self = this;
       let id = this.$route.query.id;
-        this.$nextTick(() => {
-      this.$http
-        .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
-        .then(response => {
-          self.detail = response.data.data.baseInfo;
-          response.data.data.imgInfo.forEach(element => {
-            let tag = {};
-            tag.name = element.type;
-            tag.index = self.listImg.length;
-            self.tags.push(tag);
-            for (let img of element.list) {
-              img.tag = element.type;
-              self.listImg.push(img);
-            }
+      this.$nextTick(() => {
+        this.$http
+          .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
+          .then(response => {
+            self.detail = response.data.data.baseInfo;
+            response.data.data.imgInfo.forEach(element => {
+              let tag = {};
+              tag.name = element.type;
+              tag.index = self.listImg.length;
+              self.tags.push(tag);
+              for (let img of element.list) {
+                img.tag = element.type;
+                self.listImg.push(img);
+              }
+            });
+            this.current = this.listImg[0];
+            this.$nextTick(() => {
+              this.mySwiper.reInit();
+              this.mySwiper.swipeTo(0);
+            });
           });
-          this.current = this.listImg[0];
-          this.$nextTick(() => {
-            this.mySwiper.reInit();
-            this.mySwiper.swipeTo(0)
-          });
-        });
-        })
+      });
     }
   }
 };
 </script>
 <style scoped>
-#banner {
-  /* width: 6.79rem; */
-  /* height: 4.96rem; */
+.banner {
+  height: 260px;
+  position: relative;
 }
 .swiper-container {
-  width: 6.79rem;
-  height: 4.96rem;
-  /* padding-left: 1.85rem; */
-  /* padding-right: 2.16rem; */
+  width: 100%;
+  height: 100%;
 }
 .slide-wrapper {
   width: 100%;
@@ -138,7 +142,13 @@ export default {
 }
 
 .tags {
-  margin-top: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(124, 120, 120, 0.5);
+  width: 100%;
+  padding: 5px 0;
 }
 .tags .tags-wrapper {
   padding-left: 0.28rem;
@@ -151,16 +161,16 @@ export default {
   -webkit-align-items: center;
 }
 .tags .tags-wrapper .tag {
-  /* width: 1.5rem; */
-  /* height: 0.8rem; */
   font-size: 12px;
   text-align: center;
-  border: 1px solid #dcdfe6;
-  color: #606266;
-  border-radius: 4px;
-  padding: 3px 5px;
-  width: 50px;
-  margin: 0 10px;
+  border: 1px solid #bbb;
+  padding: 4px 8px;
+  color: #444;
+  border-radius: 3px;
+  background-color: #fff;
+  margin: 0 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .tags .tags-wrapper .tag.active {

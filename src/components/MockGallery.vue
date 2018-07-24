@@ -54,7 +54,7 @@ export default {
     changeIndex(item, index) {
       this.swiper.swipeTo(item.start, false);
       this.current = this.listImg[index];
-      this.idx = item.start +1;;
+      this.idx = item.start + 1;
       this.name = item.name;
       this.startIndex = 1;
       this.tmplength = item.length;
@@ -208,7 +208,7 @@ export default {
   bottom: 1rem;
 }
 .flx {
-   display: flex;
+  display: flex;
   display: -webkit-flex;
   width: 100%;
   /* background-color: aliceblue; */
