@@ -322,7 +322,6 @@ export default {
             onSlideChangeEnd: () => {
               if (this.project_img.length > 0) {
                 this.idx = swiper.activeIndex + 1;
-                console.log(this.idx);
               } else {
                 this.idx = 0;
               }

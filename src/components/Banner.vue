@@ -36,7 +36,6 @@ export default {
       });
     },
     changeTag(tag) {
-      console.log(tag.index);
       this.mySwiper.swipeTo(1, 0 ,false);
       // this.current = this.listImgC[tag.index];
     }

@@ -52,7 +52,6 @@ export default {
   },
   methods: {
     changeIndex(item, index) {
-      console.log(item)
       this.swiper.swipeTo(item.start, false);
       this.current = this.listImg[index];
       this.idx = item.start +1;;

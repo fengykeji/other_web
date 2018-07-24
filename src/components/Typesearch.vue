@@ -43,7 +43,6 @@ export default {
       this.items = this.house_type;
       let temp = this.items;
       let arr = [];
-      console.log(temp);
       for (let item of this.items) {
         if (item.id == this.id) {
         } else {
@@ -134,7 +133,7 @@ span.typeL {
 #type {
   font-size: 0.36rem;
   /* position: relative; */
-   display: flex;
+  display: flex;
   display: -webkit-flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;

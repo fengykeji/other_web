@@ -170,7 +170,6 @@ export default {
       this.showModal = false;
     },
     choose(itm) {
-      // console.log(itm.FJZT)
       if (itm.FJZT !== "0" && itm.FJZT !== "1") {
         return;
       }
@@ -189,7 +188,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params);
     this.$http
       .get(
         `http://120.78.69.178:2902/user/yunsuan/unit?build_id=${

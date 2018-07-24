@@ -23,7 +23,6 @@ function getParameterByName(name, url) {
 }
 
 let projectId = getParameterByName('project_id')
-// console.log(projectId)
 
 
 const router = new Router({
@@ -38,7 +37,7 @@ const router = new Router({
       component: projectView,
       children: [
         {
-          path: '/',
+          path: '',
           name: 'projectView',
           component: projectView
         },
@@ -84,5 +83,5 @@ const router = new Router({
   }
 })
 
-router.push({ name: 'projectView', query: { id: projectId } })
+// router.push({ name: 'projectView', query: { id: projectId } })
 export default router

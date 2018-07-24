@@ -83,19 +83,30 @@ export default {
     $route(to, from) {
       this.tags = [];
       this.listImg = [];
-      this.currentIndex = 0;
       var self = this;
       let id = this.$route.query.id;
+        this.$nextTick(() => {
       this.$http
         .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
-        .then(function(response) {
-          console.log("-----------------------------------");
+        .then(response => {
           self.detail = response.data.data.baseInfo;
           response.data.data.imgInfo.forEach(element => {
-            self.tags.push(element.type);
-            self.listImg.push(element.list);
+            let tag = {};
+            tag.name = element.type;
+            tag.index = self.listImg.length;
+            self.tags.push(tag);
+            for (let img of element.list) {
+              img.tag = element.type;
+              self.listImg.push(img);
+            }
+          });
+          this.current = this.listImg[0];
+          this.$nextTick(() => {
+            this.mySwiper.reInit();
+            this.mySwiper.swipeTo(0)
           });
         });
+        })
     }
   }
 };
