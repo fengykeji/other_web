@@ -8,8 +8,8 @@
             <img src="../assets/log.gif" alt="" />
           </div>
           <div class="head_text">
-            <p>云算渠道</p>
-            <p>房产渠道专业平台</p>
+            <p class="main">云算渠道</p>
+            <p class="secondary">房产渠道专业平台</p>
           </div>
           <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
         </div>
@@ -50,7 +50,7 @@
               </ul>
             </div>
             <div class="split"></div>
-            <div class="houseFunction flexUl">
+            <div class="houseFunction">
               <div class="liItem bder">学区房</div>
               <div class="liItem bder">地铁房</div>
               <div class="liItem bder">电梯房</div>
@@ -77,11 +77,6 @@
       </div>
       <div class="project_news space">
         <div class="head_mod">
-          <div>
-            <font class="title" style="color:#666; font-size:16px">项目动态</font>
-            <font style="color:#4CA0FF; font-size:12px">(共{{dynamic.count}}条)</font>
-          </div>
-          <span @click="checkAllMessage" class='showInfo'>查看更多>></span>
         </div>
         <div class="project_notes">
           <a class="project_content">
@@ -89,11 +84,17 @@
             <h2 class="ctime">{{dynamic.first.create_time}}</h2>
             <div class="abstract">{{dynamic.first.abstract}}</div>
             <p id="dy_content">{{dynamic.first.content}}</p>
-            <div class="split"></div>
           </a>
         </div>
-
       </div>
+      <div class="project_dynamics" v-if='this.dynamic.count>0'>
+        <div class='text'>
+          <font class="title" style="color:#666; font-size:16px">项目动态</font>
+          <font style="color:#4CA0FF; font-size:12px">(共{{dynamic.count}}条)</font>
+        </div>
+        <span @click="checkAllMessage" class='showInfo'>查看更多>></span>
+      </div>
+
       <div class="project_img">
         <h3 class="space">楼栋信息</h3>
         <img v-if='project_base_info.total_float_url' v-bind:src="'http://120.78.69.178:2902/'+project_base_info.total_float_url" @click="checkBuildingPic" />
@@ -274,19 +275,10 @@ export default {
         }
       }
     }
-    // GetQueryString(name) {
-    //   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    //   var r = window.location.href.substr(1).match(reg);
-    //   if (r != null) {
-    //     return unescape(r[2]);
-    //   }
-    //   return null;
-    // }
   },
   created() {
     let _this = this;
     _this.project_id = _this.$route.query.id;
-    // this.project_id = this.GetQueryString("project_id");
     this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
       "http://120.78.69.178:2902/user/project/detail?project_id=" +
@@ -429,19 +421,48 @@ function slider() {
 
 <style scoped>
 @import "../assets/resetByHuang.css";
+.project_dynamics {
+  background: #fff;
+  margin-bottom: 0.13rem;
+  position: relative;
+  padding: 0 0.2rem;
+}
+.project_dynamics .text {
+  position: relative;
+  top: -10px;
+}
+.project_dynamics .showInfo {
+  font-size: 14px;
+  color: #999;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+}
+p.main {
+  font-family: SourceHanSansCN-Regular;
+  font-size: 0.4rem;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0.02rem;
+  color: #ffffff;
+  position: relative;
+  top: -0.17rem;
+}
+p.secondary {
+  font-family: SourceHanSansCN-Regular;
+  font-size: 0.3rem;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0.01rem;
+  color: #ffffff;
+}
 
 .abstract {
   font-size: 13px;
   margin-top: 0.1rem;
   color: #666;
 }
-.showInfo {
-  font-size: 14px;
-  color: #999;
-  position: absolute;
-  right: 0;
-  top: 22px;
-}
+
 .see_info {
   text-align: right;
   font-size: 0.6rem;
@@ -480,30 +501,6 @@ div#scroll {
   background: #eee;
 }
 
-/* #detail ul {
-  float: left;
-  width: 60%;
-  display: flex;
-} */
-/* #detail li {
-  float: left;
-  height: 2.1875rem;
-  padding: 0px 10px;
-  flex: 1;
-} */
-/* #detail a {
-  float: left;
-  width: 40px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  height: 2.1875rem;
-  line-height: 2.1875rem;
-  color: #666;
-} */
-/* #detail ul li a {
-  width: 2rem;
-} */
-
 .main {
   width: 100%;
   float: left;
@@ -518,35 +515,25 @@ div#scroll {
   width: 100%;
   height: 1.6rem;
   background: #0facfc;
-  /* position:absolute; */
-  /* top:0px; */
-  /* left:0px; */
-  display: flex;
   flex-wrap: nowrap;
   padding: 0.2rem;
   z-index: 1000;
+  display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
 }
 .main_mask span {
   margin-right: 0.2rem;
   color: #fff;
-  /* font-size:034rem; */
-  /* font-size: 12px; */
   width: 0.5rem;
   height: 0.5rem;
-  /* border: 1px solid red; */
-  /* margin-left: 0.3rem; */
-  /* margin-top: 0.32rem; */
-  /* margin-right: 0.3rem; */
   background-image: url("../assets/close.png");
   background-size: cover;
-  /* float:left; */
-  /* font-weight: 400; */
 }
 .main_mask .log {
   width: 1.2rem;
   height: 1.2rem;
-  /* float:left; */
 }
 .main_mask .log img {
   width: 1.2rem;
@@ -555,18 +542,18 @@ div#scroll {
   border-radius: 0.25rem;
 }
 .main_mask .middle_content {
-  /* float:left; */
   display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   flex-grow: 1;
 }
 .head_text {
-  /* float:left; */
-  /* width:11.5rem; */
-  height: 0.84rem;
-  padding-left: 0.5rem;
   margin-right: 0.35rem;
   flex-grow: 1;
+  padding-left: 0.3rem;
+  width: 4.26rem;
+  height: 0.84rem;
 }
 .head_text h4,
 .head_text p {
@@ -583,7 +570,6 @@ div#scroll {
   margin-top: 0.1rem;
 }
 #detail .main_mask .downLoad {
-  /* float:right; */
   width: 1.8rem;
   height: 0.8rem;
   line-height: 0.8rem;
@@ -592,7 +578,6 @@ div#scroll {
   background: #fff;
   color: #1b98ff;
   border-radius: 0.125rem;
-  /* margin-top:0.25rem; */
 }
 #detail .banner_images {
   float: left;
@@ -602,8 +587,8 @@ div#scroll {
   overflow: hidden;
 }
 #detail .banner_images ul {
-  /* float:left; */
   display: flex;
+  display: -webkit-flex;
   width: 300%;
   height: 5.5rem;
 }
@@ -636,7 +621,6 @@ div#scroll {
 .house_detail {
   width: 100%;
   background: #fff;
-  float: left;
 }
 .house_detail h4 {
   width: 100%;
@@ -662,6 +646,7 @@ div#scroll {
 }
 .fix {
   display: flex;
+  display: -webkit-flex;
   width: 240px;
   height: 120px;
   flex-wrap: wrap;
@@ -669,20 +654,23 @@ div#scroll {
 .house_detail .house_cancle {
   /* float:left; */
   display: flex;
+  display: -webkit-flex;
   width: 100%;
   height: 1rem;
+  -webkit-align-items: flex-start;
   align-items: flex-start;
 }
 .house_detail .house_cancle .house_can {
   /* float:left; */
-  display: flex;
-  /* flex-wrap: wrap; */
-  /* width: 5rem; */
   height: 60px;
   padding: 0.25rem 0;
   border: 1px solid red;
+  display: flex;
+  display: -webkit-flex;
   justify-content: center;
+  -webkit-justify-content: center;
   align-items: center;
+  -webkit-align-items: center;
 }
 #detail .house_detail .house_cancle .house_can a {
   /* width: calc(333.3333% - 10px); */
@@ -738,16 +726,15 @@ div#scroll {
   margin-left: 0.5rem;
 }
 #detail .house_detail .house_function {
-  /* float: left; */
-
   display: flex;
-  /* flex-wrap: wrap; */
-  /* width: 5rem; */
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
   height: 60px;
   padding: 0.25rem 0;
   border: 1px solid red;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   padding: 0.25rem 0rem;
 }
@@ -767,7 +754,6 @@ div#scroll {
   width: 100%;
   height: 1rem;
   text-align: center;
-  /* line-height: 1rem; */
   position: relative;
   margin-top: 0.1rem;
 }
@@ -813,7 +799,9 @@ div#scroll {
   /* float: left; */
   width: 100%;
   display: flex;
+  display: -webkit-flex;
   align-items: center;
+  -webkit-align-items: center;
   position: relative;
 }
 #detail .head_mod h3 {
@@ -849,6 +837,7 @@ div#scroll {
   float: left;
   width: 100%;
   display: flex;
+  display: -webkit-flex;
   /* height: 1.5rem; */
   height: 1rem;
 }
@@ -869,15 +858,12 @@ div#scroll {
   flex: 1;
 }
 #detail .project_news {
-  float: left;
   width: 100%;
-  margin-top: 0.2rem;
-  /* padding: 0.5rem; */
   background: #fff;
-  /* margin-bottom: 0.2rem; */
 }
 div.head_mod {
   display: flex;
+  display: -webkit-flex;
 }
 #detail .project_news h3 {
   flex-grow: 1;
@@ -928,7 +914,6 @@ div.head_mod {
 #detail .project_img {
   float: left;
   width: 100%;
-  margin-top: 0.2rem;
   background: #fff;
 }
 #detail .project_img > h3,
@@ -972,6 +957,7 @@ div.head_mod {
   /* float: left; */
   width: 100%;
   display: flex;
+  display: -webkit-flex;
   font-size: 14px;
 }
 #detail .project_img .house_type_content div p {
@@ -1024,7 +1010,9 @@ div.head_mod {
   background: #eee;
   padding-top: 0.5rem;
   display: flex;
-  justify-content: space-between;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
   width: 100%;
 }
 #detail #map_btn li {
@@ -1087,17 +1075,10 @@ div.head_mod {
   table-layout: auto !important;
 }
 
-.flexUl {
-  display: flex;
-  display: -webkit-flex;
-
-  align-items: center;
-  -webkit-align-items: center;
-  width: 100%;
-}
-
 .houseCancle {
   display: flex;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
   align-items: flex-start;
   width: 100%;
   height: 2rem;
@@ -1120,7 +1101,7 @@ div.head_mod {
   height: 0.7rem;
   margin-top: 0.2rem;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 .fullHeight {
   height: 100%;
@@ -1141,24 +1122,32 @@ div.head_mod {
 }
 .anothercolorful:nth-child(1) {
   background: #d5f2ff;
+  margin-right: 8px;
+
 }
 .anothertxt1 {
   color: #40a9ff !important;
 }
 .anothercolorful:nth-child(2) {
   background: #eaf2ed;
+   margin-right: 8px;
+  
 }
 .anothertxt2 {
   color: #6cbba6;
 }
 .anothercolorful:nth-child(3) {
   background: #d0f3f5;
+   margin-right: 8px;
+  
 }
 .anothertxt3 {
   color: #4fa6ab;
 }
 .anothercolorful:nth-child(4) {
   background: #ffedd3;
+   margin-right: 8px;
+  
 }
 .anothertxt4 {
   color: #e78800;
@@ -1193,23 +1182,16 @@ div.head_mod {
 .bder {
   position: relative;
   width: 60px;
+  border: 1px solid #dcdcdc;
 }
-.bder::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 200%;
-  height: 200%;
+/* .bder::after {
   border: 1px solid #dcdcdc;
   color: #d5d5d6;
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
-}
+} */
 
 .rightside {
   margin-left: 0.36rem;

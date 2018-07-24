@@ -83,5 +83,5 @@ const router = new Router({
   }
 })
 
-// router.push({ name: 'projectView', query: { id: projectId } })
+router.push({ name: 'projectView', query: { id: projectId } })
 export default router

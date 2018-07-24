@@ -89,29 +89,20 @@ div#download {
   color: #1b98ff;
 }
 p.main {
-  /* font-size: ; */
-  /* width: 261px; */
-  /* height: 0.38rem; */
   font-family: SourceHanSansCN-Regular;
   font-size: 0.4rem;
   font-weight: normal;
   font-stretch: normal;
-  /* line-height: 0px; */
   letter-spacing: 0.02rem;
   color: #ffffff;
   position: relative;
   top: -0.17rem;
-  /* margin-bottom: 0.17rem */
 }
 p.secondary {
-  /* font-size: ; */
-  /* width: 426px; */
-  /* height: 0.29rem; */
   font-family: SourceHanSansCN-Regular;
   font-size: 0.3rem;
   font-weight: normal;
   font-stretch: normal;
-  /* line-height: 0px; */
   letter-spacing: 0.01rem;
   color: #ffffff;
 }
