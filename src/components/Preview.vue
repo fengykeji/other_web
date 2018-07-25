@@ -36,12 +36,12 @@ export default {
       mySwiper: null,
       current: {}
     };
-  }, 
-  
+  },
+
   methods: {
-      goMockGallery() {
+    goMockGallery() {
       this.$router.push({
-        name: "gallery",
+        name: "dynamicGraph",
         query: { id: this.$route.query.id }
       });
     },

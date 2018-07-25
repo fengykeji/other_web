@@ -1,6 +1,6 @@
 <template>
   <div id="mock">
-    <div class="layout"  @click="getBack">
+    <div class="layout" @click="getBack">
       <div class="nav">
         <!-- <span class="back" @click="getBack">
           <img src="../assets/close.png" />
@@ -51,14 +51,14 @@ export default {
     }
   },
   methods: {
-    detail(e) {
-    },
+    detail(e) {},
     changeIndex(item, index) {
+      console.log(item);
       this.swiper.swipeTo(item.start, false);
       this.current = this.listImg[index];
       this.idx = item.start + 1;
-      this.name = item.name;
       this.startIndex = 1;
+      this.name = item.name;
       this.tmplength = item.length;
     },
 
@@ -104,14 +104,10 @@ export default {
           }
         });
 
-        this.name = this.items[0]? this.items[0].name : "";
-        this.tmplength = this.items[0] ?  this.items[0].length : "";
+        this.name = this.items[0] ? this.items[0].name : "";
+        this.tmplength = this.items[0] ? this.items[0].length : "";
 
-        // this.listImgs.forEach(function(ele,index){
-        //     self.total += ele.data.length
-        // })
         this.total = this.listImg.length;
-        // this.listImg = this.listImgs[this.activeIndex].data;
 
         this.$nextTick(() => {
           this.swiper = new Swiper(".swiper-container", {

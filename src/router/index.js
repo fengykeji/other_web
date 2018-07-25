@@ -8,6 +8,8 @@ import MessageDetail from '../components/MessageDetail.vue'
 import BuildingPic from '../components/BuildingPic.vue'
 import UnitDetail from '../components/UnitDetail.vue'
 import MockGallery from '../components/MockGallery.vue'
+import DynamicGraph from '../components/DynamicGraph.vue'
+
 Vue.use(Router)
 
 
@@ -72,6 +74,10 @@ const router = new Router({
       path: '/gallery',
       name: 'gallery',
       component: MockGallery
+    }, {
+      path: '/dynamicGraph',
+      name: 'dynamicGraph',
+      component: DynamicGraph
     }
   ],
   scrollBehavior(to, from, savedPosition) {
