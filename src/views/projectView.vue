@@ -2,7 +2,7 @@
   <div id="detail">
     <div class="main" v-if="loadding">
       <div class="main_mask" v-show="show">
-        <span class="close" v-on:click="hided"></span>
+        <!-- <span class="close" v-on:click="hided"></span> -->
         <div class="middle_content">
           <div class="log">
             <img src="../assets/log.gif" alt="" />
@@ -72,7 +72,7 @@
           </a>
         </div>
       </div>
-      <div class="project_dynamics" >
+      <div class="project_dynamics" v-if='this.dynamic.count>0'>
         <div class='text'>
           <font class="title" style="color:#666; font-size:16px">项目动态</font>
           <font style="color:#4CA0FF; font-size:12px">(共{{dynamic.count}}条)</font>
@@ -494,7 +494,7 @@ div#scroll {
 }
 .main_mask {
   /* float:left; */
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -733,7 +733,7 @@ div#scroll {
 #detail .house_detail .house_function a {
   /* float: left; */
   width: 0.36rem;
-  height: 0.48rem;
+  height: 0.3rem;
   line-height: 0.3rem;
   text-align: center;
   border: 1px solid #ddd;
@@ -744,7 +744,8 @@ div#scroll {
 #detail .house_detail .timer_content {
   float: left;
   width: 100%;
-  height: 1rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   text-align: center;
   position: relative;
   margin-top: 0.1rem;
@@ -773,7 +774,7 @@ div#scroll {
   margin: auto 0;
   position: absolute;
   left: 0;
-  top: 31%;
+  top: 50%;
   margin-top: -0.24rem;
 }
 .bulding_info {
@@ -1193,6 +1194,7 @@ a#call {
   height: 1.2rem;
 }
 .swiperbox {
+  margin-top: 55px;
   position: relative;
   width: 100%;
   height: 5.5rem;

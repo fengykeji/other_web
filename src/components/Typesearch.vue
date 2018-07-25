@@ -93,12 +93,11 @@ div#scroll {
   height: 3rem;
 }
 .title {
-  font-size: 0.46rem;
   font-family: SourceHanSansCN-Regular;
-  font-size: 0.46rem;
+  font-size: 0.4rem;
   font-weight: normal;
   font-stretch: normal;
-  line-height: 0.46rem;
+  line-height: 0.4rem;
   letter-spacing: 0px;
   color: #333333;
   padding: 0.3rem 0;

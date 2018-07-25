@@ -1,6 +1,6 @@
 <template>
   <div id="adWrapper" v-if="show">
-      <div id="close" @click="close"></div>
+      <!-- <div id="close" @click="close"></div> -->
       <div id="logo"></div>
       <div id="slogen">
           <p class="main">云算渠道</p>
@@ -60,7 +60,7 @@ export default {
   width: 1.2rem;
   height: 1.2rem;
   background-color: #ffffff;
-  border-radius: 0.05rem;
+  border-radius: 0.25rem;
   border: solid 0.01rem #dcdcdc;
   background-image: url('../assets/logo.png');
   background-size: cover

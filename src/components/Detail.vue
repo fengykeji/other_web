@@ -60,7 +60,7 @@ sup {
   /* line-height: 0px; */
   letter-spacing: 0px;
   color: #333333;
-  margin-bottom: 0.41rem;
+  margin-bottom: 0.2rem;
   /* line-height: 0.35rem; */
 }
 #area {
@@ -88,17 +88,12 @@ p#distribution {
   margin-bottom: 0.64rem;
 }
 #title {
-  /* width: 1.81rem; */
-  /* height: 0.43rem; */
   font-family: SourceHanSansCN-Regular;
-  /* font-size: 20px; */
-  font-size: 0.46rem;
+  font-size: 0.4rem;
   font-weight: normal;
   font-stretch: normal;
-  /* line-height: 0px; */
-  /* letter-spacing: 0px; */
   color: #333333;
-  margin-bottom: 0.38rem;
+  margin-bottom: 0.1rem;
 }
 #title::before {
   content: "";

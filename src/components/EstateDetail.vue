@@ -1,7 +1,9 @@
 <template>
   <div>
     <ad></ad>
-    <div class="uniqueGetBack" @click="getBack"><span class="back"></span> <span>户型详情</span>
+    <div class="uniqueGetBack" @click="getBack">
+      <span class="back"></span>
+      <span class='back_info'>户型详情</span>
     </div>
     <preview />
     <typesearch />
@@ -26,6 +28,7 @@ export default {
 </script>
 <style scoped>
 .uniqueGetBack{
+  margin-top: 55px;
   display: flex;
   display: -webkit-flex;
   justify-content: center;
@@ -39,6 +42,10 @@ export default {
   /* padding-left: 0.2rem; */
   /* font-weight: bold; */
   /* text-align: left */
+}
+.back_info{
+  font-size: 14px;
+  padding:2px 0;
 }
 .back{
   position: absolute;
