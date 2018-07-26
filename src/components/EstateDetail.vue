@@ -28,7 +28,7 @@ export default {
 </script>
 <style scoped>
 .uniqueGetBack{
-  margin-top: 55px;
+  margin-top: 64px;
   display: flex;
   display: -webkit-flex;
   justify-content: center;

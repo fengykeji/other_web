@@ -748,7 +748,6 @@ div#scroll {
   line-height: 0.6rem;
   text-align: center;
   position: relative;
-  margin-top: 0.1rem;
 }
 #detail .house_detail .timer_content font {
   float: left;
@@ -1072,14 +1071,11 @@ div.head_mod {
   -webkit-align-items: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 2rem;
+  height: 1.6rem;
   font-size: 12px;
   /* border: 1px solid red */
 }
 .tagwrapper {
-  flex-grow: 1;
-  /* border: 1px solid blue; */
-  height: 100%;
 }
 .houseCan {
   height: 0.7rem;
@@ -1089,26 +1085,22 @@ div.head_mod {
   overflow: hidden;
 }
 .houseFunction {
-  height: 0.7rem;
-  margin-top: 0.2rem;
   width: 100%;
   text-align: left;
 }
 .fullHeight {
   height: 100%;
 }
-/* .concerned {
-} */
 
 .liItem {
   font-size: .12rem;
-  line-height: 0.6rem;
-  height: 0.6rem;
+  line-height: 0.4rem;
+  height: 0.4rem;
   text-align: center;
   margin-right: 0.14rem;
   background-color: #fff;
   color: #999;
-  width: 35px;
+  width: 30px;
   display: inline-block;
 }
 .anothercolorful:nth-child(1) {
@@ -1172,7 +1164,7 @@ div.head_mod {
 }
 .bder {
   position: relative;
-  width: 45px;
+  width: 38px;
   border: 1px solid #dcdcdc;
 }
 /* .bder::after {

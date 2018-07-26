@@ -65,7 +65,7 @@ export default {
       console.log(tag);
       this.mySwiper.swipeTo(tag.index, 0, false);
       this.current = this.listImg[tag.index];
-      this.img = tag.index;
+      this.img = tag.index+1;
       if (this.img == 0) {
         this.img = 1;
       }
