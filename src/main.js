@@ -13,6 +13,7 @@ Vue.prototype.$http = axios
 Vue.use(VueBetterScroll)
 Vue.use(Button)
 /* eslint-disable no-new */
+Vue.prototype.base="http://47.107.246.94/";
 new Vue({
   el: '#app',
   router,

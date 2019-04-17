@@ -6,7 +6,7 @@
           <p class="main">云算渠道</p>
           <p class="secondary">房产渠道专业平台</p>
       </div>
-      <div id="download"> <a href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a></div>
+      <div id="download"> <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.yskj.yunqudao">下载APP</a></div>
   </div>
 </template>
 

@@ -8,7 +8,7 @@
         <div class='imgList'>
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" @click.stop='detailno' v-for="(data,index) in listImg" :style="{backgroundImage: 'url(' + 'http://120.78.69.178:2902/'+data.img_url +')'}" :key="index"></div>
+              <div class="swiper-slide" @click.stop='detailno' v-for="(data,index) in listImg" :style="{backgroundImage: 'url(' + base+data.img_url +')'}" :key="index"></div>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default {
       var this_ = this;
       let id = this.$route.query.id;
       this.$http
-        .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
+        .get(this.base+"user/houseType/detail?id=" + id)
         .then(response => {
           this_.detail = response.data.data.baseInfo;
           response.data.data.imgInfo.forEach(element => {

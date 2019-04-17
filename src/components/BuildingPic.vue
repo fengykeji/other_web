@@ -43,10 +43,10 @@ export default {
     };
   },
   created() {
-    this.bgp = "http://120.78.69.178:2902/" + this.$route.params.pic;
+    this.bgp = this.base+ this.$route.params.pic;
     this.$http
       .get(
-        "http://120.78.69.178:2902/user/yunsuan/build?project_id=" +
+              this.base+"/user/yunsuan/build?project_id=" +
           this.$route.params.projectId
       )
       .then(res => {

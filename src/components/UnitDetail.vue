@@ -190,7 +190,7 @@ export default {
   created() {
     this.$http
       .get(
-        `http://120.78.69.178:2902/user/yunsuan/unit?build_id=${
+              this.base+`user/yunsuan/unit?build_id=${
           this.$route.query.build_id
         }&unit_id=${this.$route.query.unit_id}&project_id=${
           this.$route.query.project_id

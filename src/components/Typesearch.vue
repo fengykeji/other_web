@@ -4,7 +4,7 @@
     <div id="scroll">
       <div class="house_type imgwrapper">
         <div v-for="(item,index) in items" :key="index" class="list" @click="check(item)">
-          <img class='otherImg' v-bind:src="'http://120.78.69.178:2902/'+item.img_url" v-if='item.img_url' />
+          <img class='otherImg' v-bind:src="base+item.img_url" v-if='item.img_url' />
           <img class='otherImg' v-else src="../assets/default_3@2x.jpg" />
           <div>
             <span class="house_named">{{item.house_type_name}}</span>

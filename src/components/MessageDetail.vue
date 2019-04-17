@@ -34,7 +34,7 @@ export default {
   },
   created() {
     this.$http
-      .get("http://120.78.69.178:2902/user/dynamic/detail?id=" + this.$route.params.id)
+      .get(this.base+"/user/dynamic/detail?id=" + this.$route.params.id)
       .then(res => {
         if(res.data.data.img_url){
             this.condition = true

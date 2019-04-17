@@ -3,7 +3,7 @@
     <div class="banner">
       <div class="swiper-container" @click="goMockGallery">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" v-for="(data,index) in listImg" :style="{backgroundImage: 'url(' + 'http://120.78.69.178:2902/'+data.img_url +')'}" :key="index"></div>
+          <div class="swiper-slide" v-for="(data,index) in listImg" :style="{backgroundImage: 'url(' + base+data.img_url +')'}" :key="index"></div>
         </div>
       </div>
       <div class="tags">
@@ -67,7 +67,7 @@ export default {
     var self = this;
     let id = this.$route.query.id;
     this.$http
-      .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
+      .get(this.base+"user/houseType/detail?id=" + id)
       .then(response => {
         self.detail = response.data.data.baseInfo;
         response.data.data.imgInfo.forEach(element => {
@@ -94,7 +94,7 @@ export default {
       let id = this.$route.query.id;
       this.$nextTick(() => {
         this.$http
-          .get("http://120.78.69.178:2902/user/houseType/detail?id=" + id)
+          .get(this.base+"/user/houseType/detail?id=" + id)
           .then(response => {
             self.detail = response.data.data.baseInfo;
             response.data.data.imgInfo.forEach(element => {

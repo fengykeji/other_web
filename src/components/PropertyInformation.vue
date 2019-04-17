@@ -163,7 +163,7 @@ export default {
     let self = this;
     let id = this.$route.query.id;
     this.$http
-      .get("http://120.78.69.178:2902/user/project/buildInfo?project_id=" + id)
+      .get(this.base+"user/project/buildInfo?project_id=" + id)
       .then(function(res) {
         self.info = res.data.data;
       });

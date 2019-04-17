@@ -11,14 +11,14 @@
             <p class="main">云算渠道</p>
             <p class="secondary">房产渠道专业平台</p>
           </div>
-          <a class="downLoad" href="http://itunes.apple.com/app/id1371978352?mt=8">下载APP</a>
+          <a class="downLoad" href="https://a.app.qq.com/o/simple.jsp?pkgname=com.yskj.yunqudao">下载APP</a>
         </div>
       </div>
       <div class="swiperbox">
         <div class="swiper-container" @click="goMockGallery">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="(img,index) in project_img" :key="index" v-if="img.img_url">
-              <img v-bind:src="'http://120.78.69.178:2902/'+img.img_url" />
+              <img v-bind:src="base+img.img_url" />
             </div>
             <img class="swiper-slide" v-else src="../assets/banner_default_2@2x.jpg" />
           </div>
@@ -82,7 +82,7 @@
 
       <div class="project_img">
         <h3 class="space">楼栋信息</h3>
-        <img v-if='project_base_info.total_float_url' v-bind:src="'http://120.78.69.178:2902/'+project_base_info.total_float_url" @click="checkBuildingPic" />
+        <img v-if='project_base_info.total_float_url' v-bind:src="base+project_base_info.total_float_url" @click="checkBuildingPic" />
         <img v-else src="../assets/banner_default_2@2x.jpg" />
         <div class="house_info">
           <div class="head_mod">
@@ -92,7 +92,7 @@
           <div id="scroll">
             <div class="house_type imgwrapper">
               <div v-for="(house,index) in house_type " class="house_type_content" :key="index" @click="getMoreDetails(house)">
-                <img v-if='house.img_url' v-bind:src="'http://120.78.69.178:2902/'+house.img_url" />
+                <img v-if='house.img_url' v-bind:src="base+house.img_url" />
                 <img v-else src="../assets/default_3@2x.jpg" />
                 <div>
                   <!-- <p class="house_named">{{house.house_type_name}}</p> -->
@@ -266,7 +266,7 @@ export default {
     _this.project_id = _this.$route.query.id;
     this.project_id = this.project_id === null ? 1 : this.project_id;
     var url =
-      "http://120.78.69.178:2902/user/project/detail?project_id=" +
+            this.base+"/user/project/detail/v2.7/?project_id=" +
       this.project_id +
       "&agent_id=0";
     $.ajax({
