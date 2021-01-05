@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "ajv-keywords": "^3.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "better-scroll": "^1.11.1",
     "element-ui": "^2.3.8",
     "swiper": "2.7.6",
